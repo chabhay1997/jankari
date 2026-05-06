@@ -1,22 +1,33 @@
 import Link from "next/link";
-import { FaFacebookF, FaLinkedinIn, FaRss, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { FaFacebookF, FaInstagram, FaLinkedinIn, FaRss, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
-import { getSiteData, getStoryHref } from "@/app/lib/siteData";
+import { getSiteData, getStoryHref, type SocialLink } from "@/app/lib/siteData";
 
-const socials = [
-  { icon: <FaFacebookF size={13} />, href: "https://facebook.com", label: "Facebook" },
-  { icon: <FaXTwitter size={13} />, href: "https://x.com", label: "Twitter" },
-  { icon: <FaYoutube size={13} />, href: "https://youtube.com", label: "YouTube" },
-  { icon: <FaLinkedinIn size={13} />, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: <MdEmail size={13} />, href: "/contact-us", label: "Email" },
-  { icon: <FaRss size={13} />, href: "/", label: "RSS" },
-];
+function getSocialIcon(platform: SocialLink["platform"]) {
+  switch (platform) {
+    case "facebook":
+      return <FaFacebookF size={13} />;
+    case "x":
+      return <FaXTwitter size={13} />;
+    case "instagram":
+      return <FaInstagram size={13} />;
+    case "youtube":
+      return <FaYoutube size={13} />;
+    case "linkedin":
+      return <FaLinkedinIn size={13} />;
+    case "email":
+      return <MdEmail size={13} />;
+    default:
+      return <FaRss size={13} />;
+  }
+}
 
 export default async function Footer() {
   const siteData = await getSiteData();
+  const socialLinks = siteData.socialLinks ?? [];
   const usefulLinks = siteData.footer?.usefulLinks ?? [];
-  const editorsPicks = siteData.footer?.editorsPicks ?? [];
-  const latestArticles = siteData.footer?.latestArticles ?? [];
+  const editorsPicks = (siteData.footer?.editorsPicks ?? []).slice(0, 4);
+  const latestArticles = (siteData.footer?.latestArticles ?? []).slice(0, 4);
   const bottomLinks = siteData.footer?.bottomLinks ?? [];
 
   return (
@@ -54,9 +65,9 @@ export default async function Footer() {
               Bharat Jankari covers practical stories from across India and beyond, with a clear focus on relevance, readability, and daily usefulness.
             </p>
             <div className="flex items-center gap-2">
-              {socials.map((social) => (
-                <Link key={social.label} href={social.href} aria-label={social.label} className="w-8 h-8 rounded-full bg-[#333] flex items-center justify-center text-gray-300 hover:bg-blue-600 hover:text-white transition">
-                  {social.icon}
+              {socialLinks.map((social) => (
+                <Link key={social.platform + social.href} href={social.href} aria-label={social.platform} className="w-8 h-8 rounded-full bg-[#333] flex items-center justify-center text-gray-300 hover:bg-blue-600 hover:text-white transition">
+                  {getSocialIcon(social.platform)}
                 </Link>
               ))}
             </div>

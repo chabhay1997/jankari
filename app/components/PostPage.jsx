@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
+import { getSiteData } from '@/app/lib/siteData';
 import { API_BASE_URL, SITE_URL, getPostData, getSeoDescription } from '@/app/lib/postApi';
 
 function getHeroImage(post, section) {
@@ -21,7 +22,10 @@ function getHeroImage(post, section) {
 }
 
 export default async function PostPage({ section, category, slug }) {
-    const post = await getPostData(section, category, slug);
+    const [post, siteData] = await Promise.all([
+        getPostData(section, category, slug),
+        getSiteData(),
+    ]);
     const heroImage = getHeroImage(post, section);
     const categoryLabel = post?.categorySlug || category;
     const sectionLabel = section || post?.section;
@@ -53,7 +57,7 @@ export default async function PostPage({ section, category, slug }) {
     if (!post) {
         return (
             <div className="min-h-screen bg-white">
-                <Header />
+                <Header siteData={siteData} />
                 <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-4">
                     <h1 className="text-4xl font-black text-black mb-2">Post Not Found</h1>
                     <p className="text-black text-lg">
@@ -74,7 +78,7 @@ export default async function PostPage({ section, category, slug }) {
 
     return (
         <div className="min-h-screen bg-[#fcfcfc]">
-            <Header />
+            <Header siteData={siteData} />
 
             <main className="max-w-[1280px] mx-auto px-4 md:px-6 py-8 md:py-10">
                 <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-8">

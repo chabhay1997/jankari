@@ -1,14 +1,17 @@
 "use client";
 
-import { MouseEvent, useEffect, useRef, useState } from "react";
+import { MouseEvent, useRef, useState } from "react";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FiChevronDown } from "react-icons/fi";
 import { HiMenu, HiSearch, HiX } from "react-icons/hi";
 import {
-  fallbackSiteData,
-  mergeSiteData,
+  getStoryHref,
+  getTopicChildrenFromData,
+  getTopicHref,
+  getTopicLabelFromTopics,
+  getTopicSlugFromHref,
   type NavItem,
   type SiteData,
   type SocialLink,
@@ -46,38 +49,11 @@ function getSocialBg(platform: SocialLink["platform"]) {
   }
 }
 
-export default function Header() {
+export default function Header({ siteData }: { siteData: SiteData }) {
   const [sideMenuOpen, setSideMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [siteData, setSiteData] = useState<SiteData>(fallbackSiteData);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    let active = true;
-
-    async function loadSiteData() {
-      try {
-        const res = await fetch("/api/site-data", { cache: "no-store" });
-        if (!res.ok) {
-          return;
-        }
-
-        const data = mergeSiteData((await res.json()) as Partial<SiteData>);
-        if (active) {
-          setSiteData(data);
-        }
-      } catch {
-        // Keep the fallback navigation if the API is unavailable.
-      }
-    }
-
-    loadSiteData();
-
-    return () => {
-      active = false;
-    };
-  }, []);
 
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long",
@@ -108,7 +84,21 @@ export default function Header() {
     }
   };
 
-  const entertainmentMenu = siteData.navItems.find((item) => item.label === "ENTERTAINMENT");
+  const openMenuItem = siteData.navItems.find((item) => item.label === openDropdown);
+  const openTopicSlug = openMenuItem ? getTopicSlugFromHref(openMenuItem.href) : "";
+  const previewStories = (
+    siteData.navPreviewMap?.[openTopicSlug]?.stories?.length
+      ? siteData.navPreviewMap?.[openTopicSlug]?.stories
+      : siteData.stories?.filter((entry) => entry.topic === openTopicSlug).slice(0, 4)
+  ) ?? [];
+  const previewSubtopics = getTopicChildrenFromData(siteData.topics, siteData.topicGroups, openTopicSlug)
+    .filter((topic) => topic.slug !== "home")
+    .slice(0, 8);
+  const quickLinks = openMenuItem?.dropdown?.length
+    ? openMenuItem.dropdown.slice(0, 8)
+    : previewSubtopics.map((topic) => ({ label: topic.label, href: getTopicHref(topic.slug) }));
+  const featuredPreview = previewStories[0];
+  const storyList = previewStories.slice(featuredPreview ? 1 : 0, 4);
 
   return (
     <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
@@ -199,26 +189,6 @@ export default function Header() {
                     <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-200" />
                   </Link>
 
-                  {item.dropdown && openDropdown === item.label && item.label !== "ENTERTAINMENT" && (
-                    <ul
-                      role="menu"
-                      className="absolute top-full left-0 min-w-[180px] bg-white border border-gray-200 shadow-lg z-50 py-1"
-                      onMouseEnter={() => handleMouseEnter(item.label)}
-                      onMouseLeave={handleMouseLeave}
-                    >
-                      {item.dropdown.map((sub) => (
-                        <li key={sub.href} role="none">
-                          <Link
-                            href={sub.href}
-                            role="menuitem"
-                            className="block px-4 py-2.5 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition-colors border-l-2 border-transparent hover:border-blue-600"
-                          >
-                            {sub.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
                 </li>
               ))}
             </div>
@@ -233,18 +203,26 @@ export default function Header() {
             </div>
           </ul>
 
-          {openDropdown === "ENTERTAINMENT" && entertainmentMenu?.dropdown && (
+          {openMenuItem && openDropdown && openTopicSlug !== "home" && (
             <div
               className="absolute top-full left-0 w-full bg-white border-t border-gray-200 shadow-2xl z-50 py-6"
-              onMouseEnter={() => handleMouseEnter("ENTERTAINMENT")}
+              onMouseEnter={() => handleMouseEnter(openMenuItem.label)}
               onMouseLeave={handleMouseLeave}
             >
-              <div className="max-w-[1300px] mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="max-w-[1300px] mx-auto px-4 grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)_320px] gap-6">
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-gray-500 mb-4">Hot Categories</p>
+                  <div className="flex items-center justify-between gap-3 mb-4">
+                    <div>
+                      <p className="text-xs font-bold uppercase tracking-[0.25em] text-gray-500">Browse {getTopicLabelFromTopics(siteData.topics, openTopicSlug)}</p>
+                      <p className="text-sm text-gray-500 mt-1">Quick category jumps for this section.</p>
+                    </div>
+                    <Link href={openMenuItem.href} className="text-xs font-bold uppercase tracking-[0.16em] text-blue-600 hover:underline">
+                      View All
+                    </Link>
+                  </div>
                   <div className="grid grid-cols-2 gap-2 text-sm text-gray-700">
-                    {siteData.hero.entertainmentCategories.flat().map((category) => (
-                      <Link key={category.href} href={category.href} className="block rounded-lg px-3 py-2 hover:bg-blue-50 hover:text-blue-600 transition">
+                    {quickLinks.map((category) => (
+                      <Link key={category.href} href={category.href} className="block rounded-lg border border-gray-200 bg-gray-50 px-3 py-2 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-100 transition">
                         {category.label}
                       </Link>
                     ))}
@@ -252,26 +230,57 @@ export default function Header() {
                 </div>
 
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-gray-500 mb-4">Popular This Week</p>
-                  <div className="space-y-3">
-                    {siteData.hero.popularStories.map((entry) => (
-                      <Link key={entry.slug} href={`/stories/${entry.slug}`} className="block rounded-lg px-4 py-3 bg-gray-50 hover:bg-blue-50 transition">
-                        <p className="text-sm font-semibold text-gray-900">{entry.title}</p>
-                        <p className="text-xs text-gray-500 mt-1">by {entry.author}</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-gray-500 mb-4">Featured Blogs</p>
+                  {featuredPreview ? (
+                    <div className="grid gap-4">
+                      <Link href={getStoryHref(featuredPreview.slug)} className="grid gap-4 rounded-2xl border border-gray-200 bg-white p-4 hover:border-blue-200 hover:shadow-sm transition md:grid-cols-[220px_minmax(0,1fr)]">
+                        <div className="overflow-hidden rounded-xl bg-gray-100">
+                          <img src={featuredPreview.image} alt={featuredPreview.title} className="h-full w-full object-cover" />
+                        </div>
+                        <div>
+                          <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600">{getTopicLabelFromTopics(siteData.topics, featuredPreview.topic)}</p>
+                          <h3 className="mt-2 text-xl font-black leading-snug text-gray-900">{featuredPreview.title}</h3>
+                          <p className="mt-2 text-sm leading-6 text-gray-600 line-clamp-3">{featuredPreview.excerpt}</p>
+                          <p className="mt-3 text-xs text-gray-400">by {featuredPreview.author}</p>
+                        </div>
                       </Link>
-                    ))}
-                  </div>
+
+                      <div className="grid gap-3 md:grid-cols-3">
+                        {storyList.map((entry) => (
+                          <Link key={entry.slug} href={getStoryHref(entry.slug)} className="rounded-xl border border-gray-200 bg-gray-50 p-4 hover:border-blue-200 hover:bg-blue-50 transition">
+                            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-gray-400">{getTopicLabelFromTopics(siteData.topics, entry.topic)}</p>
+                            <p className="mt-2 text-sm font-semibold text-gray-900 leading-snug line-clamp-3">{entry.title}</p>
+                            <p className="mt-2 text-xs text-gray-500">by {entry.author}</p>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50 px-4 py-6 text-sm text-gray-500">
+                      Fresh preview stories for this section will appear here soon.
+                    </div>
+                  )}
                 </div>
 
                 <div>
-                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-gray-500 mb-4">Editor&apos;s Pick</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-gray-500 mb-4">Ideas For Readers</p>
                   <div className="space-y-3">
-                    {siteData.hero.editorsPick.map((entry) => (
-                      <Link key={entry.slug} href={`/stories/${entry.slug}`} className="block rounded-lg px-4 py-3 bg-gray-50 hover:bg-blue-50 transition">
-                        <p className="text-sm font-semibold text-gray-900">{entry.title}</p>
-                        <p className="text-xs text-gray-500 mt-1">by {entry.author}</p>
+                    <Link href={openMenuItem.href} className="block rounded-xl border border-gray-200 bg-gray-50 px-4 py-4 hover:border-blue-200 hover:bg-blue-50 transition">
+                      <p className="text-sm font-semibold text-gray-900">Explore all {getTopicLabelFromTopics(siteData.topics, openTopicSlug)} blogs</p>
+                      <p className="mt-1 text-xs text-gray-500">Open the full section page with latest stories first.</p>
+                    </Link>
+                    {previewSubtopics.slice(0, 3).map((topic) => (
+                      <Link key={topic.slug} href={getTopicHref(topic.slug)} className="block rounded-xl border border-gray-200 bg-gray-50 px-4 py-4 hover:border-blue-200 hover:bg-blue-50 transition">
+                        <p className="text-sm font-semibold text-gray-900">{topic.label}</p>
+                        <p className="mt-1 text-xs text-gray-500">Jump into this focused subcategory.</p>
                       </Link>
                     ))}
+                    <div className="rounded-xl border border-gray-200 bg-white px-4 py-4">
+                      <p className="text-xs font-bold uppercase tracking-[0.18em] text-gray-400">Dynamic Source</p>
+                      <p className="mt-2 text-sm text-gray-600">
+                        This menu now uses backend preview data when available, so blog recommendations can stay updated.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
