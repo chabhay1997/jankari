@@ -21,17 +21,22 @@ jobs:
           script: |
             cd /home/bharatjankari.com/public_html
             
+            # Kill existing PM2 processes first
+            pm2 delete bharat-jankari || true
+            sleep 2
+            
             # Latest code pull karein
             git pull origin main
-
+            
             # Dependencies aur Build
             npm install
             npm run build
-
-            # Sabse zaroori: Port 3002 ke saath restart/start karein
-            # Hum pehle purana delete karenge taaki port conflict na ho
-            pm2 delete bharat-jankari || true
-            PORT=3002 pm2 start npm --name "bharat-jankari" -- start -- -p 3002
             
-            # PM2 list save karein
+            # Start with correct working directory - THIS IS THE KEY FIX
+            pm2 start npm --name "bharat-jankari" \
+              --cwd "/home/bharatjankari.com/public_html" \
+              -- start -- -p 3002
+            
+            # PM2 save karein
             pm2 save
+            pm2 list
