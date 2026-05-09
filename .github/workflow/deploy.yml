@@ -2,14 +2,15 @@ name: Bharat Jankari Live Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Deploy to Server via SSH
         uses: appleboy/ssh-action@master
@@ -18,15 +19,11 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
-            # Sahi path par jayein
             cd /home/bharatjankari.com/public_html
-            
-            # Latest code pull karein
+
             git pull origin main
-            
-            # Next.js ko build aur restart karein
+
             npm install
             npm run build
-            
-            # PM2 se app restart karein
-            pm2 restart bharat-jankari || pm2 start npm --name "bharat-jankari" -- start  d
+
+            pm2 restart bharat-jankari || pm2 start npm --name "bharat-jankari" -- start
