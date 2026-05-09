@@ -114,7 +114,7 @@ export default function Header({ siteData }: { siteData: SiteData }) {
         </Link>
 
         <div className="flex-1 max-w-xl hidden md:flex">
-          <label htmlFor="site-search" className="sr-only">S newasags articles</label>
+          <label htmlFor="site-search" className="sr-only">Search news articles</label>
           <div className="flex w-full border border-gray-300 rounded overflow-hidden focus-within:border-blue-500 transition">
             <input
               id="site-search"
