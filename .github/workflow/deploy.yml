@@ -20,10 +20,18 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd /home/bharatjankari.com/public_html
-
+            
+            # Latest code pull karein
             git pull origin main
 
+            # Dependencies aur Build
             npm install
             npm run build
 
-            pm2 restart bharat-jankari || pm2 start npm --name "bharat-jankari" -- start
+            # Sabse zaroori: Port 3002 ke saath restart/start karein
+            # Hum pehle purana delete karenge taaki port conflict na ho
+            pm2 delete bharat-jankari || true
+            PORT=3002 pm2 start npm --name "bharat-jankari" -- start -- -p 3002
+            
+            # PM2 list save karein
+            pm2 save
