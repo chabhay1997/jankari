@@ -198,7 +198,7 @@ export default function Header({ siteData }: { siteData: SiteData }) {
                 {today}
               </time>
               <Link href="/about-us" className="text-xs font-bold text-gray-700 border border-gray-300 px-3 py-1.5 hover:bg-gray-100 transition rounded-sm">
-                ABOUT
+                AB
               </Link>
             </div>
           </ul>

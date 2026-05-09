@@ -56,7 +56,7 @@ export default async function HeroGrid() {
         </aside>
 
         <section aria-labelledby="popular-heading" className="p-5 border-r border-gray-200">
-          <SectionHeading title="Popular This W" id="popular-heading" />
+          <SectionHeading title="Popular This Week" id="popular-heading" />
           <ol className="divide-y divide-gray-100">
             {popularStories.map((article, index) => (
               <li key={article.id} className="flex gap-4 py-4 first:pt-0 last:pb-0">
