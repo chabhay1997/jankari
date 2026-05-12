@@ -20,6 +20,8 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
+          timeout: 60s
+          command_timeout: 20m
           script_stop: true
           script: |
             cd /home/bharatjankari.com/public_html

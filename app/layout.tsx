@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Viewport configuration for theme and scaling
+// Viewport configuration for theme and scalin
 export const viewport: Viewport = {
   themeColor: "#ffffff",
 };
