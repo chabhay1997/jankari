@@ -846,7 +846,7 @@ export const fallbackSiteData: SiteData = {
   stories,
 };
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://admin.bharatjankari.com";
 
 function mergeSiteData(remote: Partial<SiteData> | null | undefined): SiteData {
   if (!remote) {

@@ -7,36 +7,46 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
       - name: Deploy to Server via SSH
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
+          script_stop: true
           script: |
             cd /home/bharatjankari.com/public_html
-            
-            # Kill existing PM2 processes first
-            pm2 delete bharat-jankari || true
-            sleep 2
-            
+
             # Latest code pull karein
             git pull origin main
-            
+
+            # Production env ensure karein
+            cat > .env.production <<EOF
+            NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}
+            NEXT_PUBLIC_API_BASE_URL=${{ secrets.NEXT_PUBLIC_API_BASE_URL }}
+            API_AUTH_TOKEN=${{ secrets.API_AUTH_TOKEN }}
+            EOF
+
             # Dependencies aur Build
-            npm install
+            npm ci
+            chmod +x node_modules/next/dist/bin/next node_modules/.bin/next || true
             npm run build
-            
-            # Start with correct working directory - THIS IS THE KEY FIX
-            pm2 start npm --name "bharat-jankari" \
-              --cwd "/home/bharatjankari.com/public_html" \
-              -- start -- -p 3002
-            
+
+            # Build ke baad hi PM2 restart/start karein
+            if pm2 describe bharat-jankari > /dev/null; then
+              pm2 restart bharat-jankari --update-env
+            else
+              pm2 start npm --name "bharat-jankari" \
+                --cwd "/home/bharatjankari.com/public_html" \
+                -- start -- -p 3002
+            fi
+
             # PM2 save karein
             pm2 save
             pm2 list

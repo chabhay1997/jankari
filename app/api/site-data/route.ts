@@ -1,7 +1,7 @@
 import { mergeSiteData } from "@/app/lib/siteData";
 
 export async function GET() {
-  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "https://admin.bharatjankari.com";
 
   try {
     const res = await fetch(`${apiBaseUrl}/api/site-data`, {
