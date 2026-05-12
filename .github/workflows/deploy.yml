@@ -27,8 +27,10 @@ jobs:
             # Git safe directory issue ko avoid karein
             git config --global --add safe.directory /home/bharatjankari.com/public_html
 
-            # Latest code pull karein
-            git pull origin main
+            # Server par existing local/untracked files ko preserve karke clean sync karein
+            git stash push --include-untracked -m "ci-pre-deploy-$(date +%Y%m%d-%H%M%S)" || true
+            git fetch origin main
+            git reset --hard origin/main
 
             # Production env ensure karein
             cat > .env.production <<EOF
