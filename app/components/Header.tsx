@@ -105,7 +105,7 @@ export default function Header({ siteData }: { siteData: SiteData }) {
       <div className="max-w-[1300px] mx-auto px-4 py-3 flex items-center gap-4">
         <Link href="/" aria-label="Bharat Jankari Home" className="flex-shrink-0 flex items-center gap-1.5">
           <div className="bg-blue-600 rounded-full w-10 h-10 flex items-center justify-center">
-            <span className="text-white font-black text-sm leading-none">24*7 HH</span>
+            <span className="text-white font-black text-sm leading-none">24 H</span>
           </div>
           <div className="leading-none">
             <p className="text-blue-600 font-black text-[22px] tracking-tight leading-none">BHARAT</p>
