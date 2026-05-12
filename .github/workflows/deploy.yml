@@ -3,6 +3,7 @@ name: Bharat Jankari Live Deploy
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   deploy:
