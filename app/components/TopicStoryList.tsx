@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Link from "next/link";
-import { getStoryHref, type StoryCard } from "@/app/lib/siteData";
+import { getStoryHrefWithSource, type StoryCard } from "@/app/lib/siteData";
 
 const STORIES_PER_PAGE = 12;
 
@@ -35,7 +35,7 @@ export default function TopicStoryList({ stories }: { stories: StoryCard[] }) {
           <article key={story.slug} className="overflow-hidden border border-gray-200 bg-white">
             <img src={story.image} alt={story.title} className="h-52 w-full object-cover" />
             <div className="p-4">
-              <Link href={getStoryHref(story.slug)}>
+              <Link href={getStoryHrefWithSource(story.slug, "topic")}>
                 <h2 className="text-lg font-bold leading-snug text-gray-900 transition hover:text-blue-600">
                   {story.title}
                 </h2>
@@ -43,7 +43,7 @@ export default function TopicStoryList({ stories }: { stories: StoryCard[] }) {
               <p className="mt-2 line-clamp-3 text-sm text-gray-600">{story.excerpt}</p>
               <div className="mt-4 flex items-center justify-between">
                 <span className="text-xs text-gray-400">by {story.author}</span>
-                <Link href={getStoryHref(story.slug)} className="text-xs font-bold text-blue-600 hover:underline">
+                <Link href={getStoryHrefWithSource(story.slug, "topic")} className="text-xs font-bold text-blue-600 hover:underline">
                   READ STORY
                 </Link>
               </div>

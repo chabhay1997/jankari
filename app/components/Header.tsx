@@ -7,7 +7,9 @@ import { MdEmail } from "react-icons/md";
 import { FiChevronDown } from "react-icons/fi";
 import { HiMenu, HiSearch, HiX } from "react-icons/hi";
 import {
+  getStoryImage,
   getStoryHref,
+  getStoryHrefWithSource,
   getTopicChildrenFromData,
   getTopicHref,
   getTopicLabelFromTopics,
@@ -78,7 +80,10 @@ export default function Header({ siteData }: { siteData: SiteData }) {
   };
 
   const handleDropdownClick = (event: MouseEvent<HTMLAnchorElement>, item: NavItem) => {
-    if (item.dropdown) {
+    const topicSlug = getTopicSlugFromHref(item.href);
+    const canOpenPreview = topicSlug && topicSlug !== "home";
+
+    if (item.dropdown || canOpenPreview) {
       event.preventDefault();
       toggleDropdown(item.label);
     }
@@ -166,11 +171,11 @@ export default function Header({ siteData }: { siteData: SiteData }) {
           <ul className="hidden md:flex items-center justify-between">
             <div className="flex items-center">
               {siteData.navItems.map((item) => (
-                <li key={item.href} className="relative" onMouseEnter={() => item.dropdown && handleMouseEnter(item.label)}>
+                <li key={item.href} className="relative" onMouseEnter={() => getTopicSlugFromHref(item.href) !== "home" && handleMouseEnter(item.label)}>
                   <Link
                     href={item.href}
                     onClick={(event) => handleDropdownClick(event, item)}
-                    aria-haspopup={item.dropdown ? "true" : undefined}
+                    aria-haspopup={getTopicSlugFromHref(item.href) !== "home" ? "true" : undefined}
                     aria-expanded={openDropdown === item.label ? "true" : "false"}
                     className="group flex items-center gap-1 px-3 py-3.5 text-[13px] font-bold text-gray-800 hover:text-blue-600 transition-colors relative whitespace-nowrap"
                   >
@@ -233,9 +238,9 @@ export default function Header({ siteData }: { siteData: SiteData }) {
                   <p className="text-xs font-bold uppercase tracking-[0.25em] text-gray-500 mb-4">Featured Blogs</p>
                   {featuredPreview ? (
                     <div className="grid gap-4">
-                      <Link href={getStoryHref(featuredPreview.slug)} className="grid gap-4 rounded-2xl border border-gray-200 bg-white p-4 hover:border-blue-200 hover:shadow-sm transition md:grid-cols-[220px_minmax(0,1fr)]">
+                      <Link href={getStoryHrefWithSource(featuredPreview.slug, "nav")} className="grid gap-4 rounded-2xl border border-gray-200 bg-white p-4 hover:border-blue-200 hover:shadow-sm transition md:grid-cols-[220px_minmax(0,1fr)]">
                         <div className="overflow-hidden rounded-xl bg-gray-100">
-                          <img src={featuredPreview.image} alt={featuredPreview.title} className="h-full w-full object-cover" />
+                          <img src={getStoryImage(featuredPreview)} alt={featuredPreview.title} className="h-full w-full object-cover" />
                         </div>
                         <div>
                           <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-blue-600">{getTopicLabelFromTopics(siteData.topics, featuredPreview.topic)}</p>
@@ -247,7 +252,7 @@ export default function Header({ siteData }: { siteData: SiteData }) {
 
                       <div className="grid gap-3 md:grid-cols-3">
                         {storyList.map((entry) => (
-                          <Link key={entry.slug} href={getStoryHref(entry.slug)} className="rounded-xl border border-gray-200 bg-gray-50 p-4 hover:border-blue-200 hover:bg-blue-50 transition">
+                          <Link key={entry.slug} href={getStoryHrefWithSource(entry.slug, "nav")} className="rounded-xl border border-gray-200 bg-gray-50 p-4 hover:border-blue-200 hover:bg-blue-50 transition">
                             <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-gray-400">{getTopicLabelFromTopics(siteData.topics, entry.topic)}</p>
                             <p className="mt-2 text-sm font-semibold text-gray-900 leading-snug line-clamp-3">{entry.title}</p>
                             <p className="mt-2 text-xs text-gray-500">by {entry.author}</p>

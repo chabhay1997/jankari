@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getSiteData, getStoryHref, type CategoryLink } from "@/app/lib/siteData";
+import { getSiteData, getStoryHref, getStoryImage, type CategoryLink } from "@/app/lib/siteData";
 
 function SectionHeading({ title, id }: { title: string; id?: string }) {
   return (
@@ -35,8 +35,8 @@ export default async function HeroGrid() {
   const siteData = await getSiteData();
   const hotCategories = siteData.hero?.hotCategories ?? [[], []];
   const entertainmentCategories = siteData.hero?.entertainmentCategories ?? [[], []];
-  const popularStories = siteData.hero?.popularStories ?? [];
-  const editorsPick = siteData.hero?.editorsPick ?? [];
+  const popularStories = (siteData.hero?.popularStories ?? []).map((story) => ({ ...story, image: getStoryImage(story) }));
+  const editorsPick = (siteData.hero?.editorsPick ?? []).map((story) => ({ ...story, image: getStoryImage(story) }));
 
   return (
     <section aria-label="Featured content" className="max-w-[1300px] mx-auto px-4 py-6">

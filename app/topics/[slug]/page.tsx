@@ -1,10 +1,69 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
-import TopicExplorer from "@/app/components/TopicExplorer";
 import TopicStoryList from "@/app/components/TopicStoryList";
 import { getTopicBySlug, getTopicChildrenFromData, getTopicHref, getSiteData, getTopicStories } from "@/app/lib/siteData";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bharatjankari.com";
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const topic = await getTopicBySlug(slug);
+
+  if (!topic) {
+    return {
+      title: "Topic Not Found | Bharat Jankari",
+      robots: {
+        index: false,
+        follow: false,
+      },
+    };
+  }
+
+  const title = `${topic.label} News, Blogs and Latest Stories`;
+  const description = topic.description || `${topic.label} stories, explainers, and latest updates from Bharat Jankari.`;
+  const canonical = topic.slug === "home" ? "/" : `/topics/${topic.slug}`;
+
+  return {
+    title,
+    description,
+    keywords: [
+      `${topic.label} news`,
+      `${topic.label} latest stories`,
+      `${topic.label} blogs`,
+      `Bharat Jankari ${topic.label}`,
+    ],
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${siteUrl}${canonical}`,
+      type: "website",
+      siteName: "Bharat Jankari",
+      locale: "en_IN",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+  };
+}
 
 export default async function TopicPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
@@ -15,11 +74,14 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
   }
 
   const stories = remoteStories;
-  const subtopics = getTopicChildrenFromData(siteData.topics, siteData.topicGroups, slug);
-  const siblingTopics = (siteData.topics ?? []).filter((entry) => (
-    entry.slug === "home" ||
-    !subtopics.some((subtopic) => subtopic.slug === entry.slug)
-  ));
+  const directSubtopics = getTopicChildrenFromData(siteData.topics, siteData.topicGroups, slug);
+  const hasNestedTopics = directSubtopics.some((entry) => entry.slug !== topic.slug);
+  const parentTopicSlug = Object.entries(siteData.topicGroups ?? {}).find(([, childSlugs]) => (
+    childSlugs.some((childSlug) => childSlug === topic.slug) && childSlugs.some((childSlug) => childSlug !== topic.slug)
+  ))?.[0];
+  const subtopics = hasNestedTopics || !parentTopicSlug
+    ? directSubtopics
+    : getTopicChildrenFromData(siteData.topics, siteData.topicGroups, parentTopicSlug);
 
   return (
     <div className="min-h-screen bg-[#f5f5f5]">
@@ -76,14 +138,6 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
             Fresh stories for this topic will appear here soon. Explore the <Link href={getTopicHref("home")} className="text-blue-600 hover:underline">homepage</Link> in the meantime.
           </div>
         )}
-
-        <TopicExplorer
-          currentTopic={topic}
-          stories={stories}
-          subtopics={subtopics}
-          siblingTopics={siblingTopics}
-          allTopics={siteData.topics}
-        />
       </main>
       <Footer />
     </div>

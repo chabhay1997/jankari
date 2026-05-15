@@ -1,19 +1,93 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import HeroGrid from "./components/HeroGrid";
-import { getSiteData, getStoryHref, getTopicHref } from "./lib/siteData";
+import InfiniteStoryFeed from "./components/InfiniteStoryFeed";
+import { getSiteData, getStoryHrefWithSource, getStoryImage, getTopicHref } from "./lib/siteData";
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bharatjankari.com";
+
+export const metadata: Metadata = {
+  title: "Bharat Jankari | India, World, Business, Trading, Health and Latest News Briefing",
+  description: "Read Bharat Jankari for latest India news, world updates, business, trading, politics, travel, health, and technology stories in one live briefing.",
+  keywords: [
+    "latest India news",
+    "world news India",
+    "business news India",
+    "trading news India",
+    "health news blogs",
+    "technology and travel stories",
+    "Bharat Jankari",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Bharat Jankari | India, World, Business, Trading, Health and Latest News Briefing",
+    description: "Read Bharat Jankari for latest India news, world updates, business, trading, politics, travel, health, and technology stories in one live briefing.",
+    url: siteUrl,
+    type: "website",
+    siteName: "Bharat Jankari",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bharat Jankari | India, World, Business, Trading, Health and Latest News Briefing",
+    description: "Read Bharat Jankari for latest India news, world updates, business, trading, politics, travel, health, and technology stories in one live briefing.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+};
+
+function uniqueStories<T extends { slug: string }>(items: T[]) {
+  const seen = new Set<string>();
+  return items.filter((item) => {
+    if (seen.has(item.slug)) {
+      return false;
+    }
+    seen.add(item.slug);
+    return true;
+  });
+}
 
 export default async function HomePage() {
   const siteData = await getSiteData();
   const featuredTopic = siteData.home?.featuredTopic ?? { slug: "home", label: "Home", description: "" };
-  const featuredStories = siteData.home?.featuredStories ?? [];
-  const trendingStories = siteData.home?.trendingStories ?? [];
-  const popularStories = siteData.hero?.popularStories ?? [];
+  const allStories = uniqueStories((siteData.stories ?? []).map((story) => ({ ...story, image: getStoryImage(story) })));
+  const backendFeaturedStories = (siteData.home?.featuredStories ?? []).map((story) => ({ ...story, image: getStoryImage(story) }));
+  const backendTrendingStories = (siteData.home?.trendingStories ?? []).map((story) => ({ ...story, image: getStoryImage(story) }));
+  const backendPopularStories = (siteData.hero?.popularStories ?? []).map((story) => ({ ...story, image: getStoryImage(story) }));
   const topics = siteData.topics ?? [];
+  const featuredStories = uniqueStories([...backendFeaturedStories, ...allStories]).slice(0, 4);
+  const featuredUsed = new Set(featuredStories.map((story) => story.slug));
+  const trendingStories = uniqueStories([
+    ...backendTrendingStories.filter((story) => !featuredUsed.has(story.slug)),
+    ...allStories.filter((story) => !featuredUsed.has(story.slug)),
+  ]).slice(0, 6);
+  const trendingUsed = new Set([...featuredUsed, ...trendingStories.map((story) => story.slug)]);
+  const popularStories = uniqueStories([
+    ...backendPopularStories.filter((story) => !trendingUsed.has(story.slug)),
+    ...allStories.filter((story) => !trendingUsed.has(story.slug)),
+  ]).slice(0, 5);
+  const digestPool = uniqueStories([
+    ...allStories.filter((story) => !new Set([...trendingUsed, ...popularStories.map((entry) => entry.slug)]).has(story.slug)),
+    ...backendFeaturedStories,
+    ...backendPopularStories,
+  ]);
+  const storyFeed = allStories;
   const leadStory = featuredStories[0] ?? null;
   const secondaryFeatured = featuredStories.slice(1, 4);
-  const latestDigest = [...featuredStories.slice(0, 2), ...popularStories.slice(0, 2)].slice(0, 4);
+  const latestDigest = digestPool.slice(0, 4);
 
   return (
     <div className="page-shell font-sans">
@@ -53,7 +127,7 @@ export default async function HomePage() {
                           {topics.find((topic) => topic.slug === leadStory.topic)?.label || leadStory.topic}
                         </span>
                       </Link>
-                      <Link href={getStoryHref(leadStory.slug)}>
+                      <Link href={getStoryHrefWithSource(leadStory.slug, "home")}>
                         <h3 className="text-2xl md:text-4xl font-black text-slate-950 mt-3 leading-tight hover:text-blue-600 transition">
                           {leadStory.title}
                         </h3>
@@ -79,7 +153,7 @@ export default async function HomePage() {
                               {topics.find((topic) => topic.slug === article.topic)?.label || article.topic}
                             </span>
                           </Link>
-                          <Link href={getStoryHref(article.slug)}>
+                          <Link href={getStoryHrefWithSource(article.slug, "home")}>
                             <h3 className="text-base font-bold text-slate-900 mt-3 leading-snug hover:text-blue-600 transition line-clamp-2">
                               {article.title}
                             </h3>
@@ -119,7 +193,7 @@ export default async function HomePage() {
                               {topics.find((topic) => topic.slug === article.topic)?.label || article.topic}
                             </span>
                           </Link>
-                          <Link href={getStoryHref(article.slug)} className="block mt-2 text-sm font-semibold text-slate-900 hover:text-blue-600 transition leading-snug">
+                          <Link href={getStoryHrefWithSource(article.slug, "home")} className="block mt-2 text-sm font-semibold text-slate-900 hover:text-blue-600 transition leading-snug">
                             {article.title}
                           </Link>
                           <span className="text-xs text-slate-400 block mt-2">by {article.author}</span>
@@ -154,7 +228,7 @@ export default async function HomePage() {
                   <div key={article.id} className="flex gap-4 items-start">
                     <img src={article.image} alt={article.title} className="w-24 h-16 object-cover flex-shrink-0 rounded-lg" />
                     <div>
-                      <Link href={getStoryHref(article.slug)} className="text-sm font-semibold text-gray-800 hover:text-blue-600 transition leading-snug">
+                      <Link href={getStoryHrefWithSource(article.slug, "home")} className="text-sm font-semibold text-gray-800 hover:text-blue-600 transition leading-snug">
                         {article.title}
                       </Link>
                       <span className="text-xs text-gray-400 block mt-1">by {article.author}</span>
@@ -184,7 +258,7 @@ export default async function HomePage() {
                     <span className="text-[11px] font-black text-slate-300 pt-1">{String(index + 1).padStart(2, "0")}</span>
                     <img src={article.image} alt={article.title} className="w-20 h-14 object-cover rounded-lg flex-shrink-0" />
                     <div>
-                      <Link href={getStoryHref(article.slug)} className="text-sm font-semibold text-gray-800 hover:text-blue-600 transition leading-snug">
+                      <Link href={getStoryHrefWithSource(article.slug, "home")} className="text-sm font-semibold text-gray-800 hover:text-blue-600 transition leading-snug">
                         {article.title}
                       </Link>
                       <span className="text-xs text-gray-400 block mt-1">by {article.author}</span>
@@ -199,6 +273,14 @@ export default async function HomePage() {
             )}
           </aside>
         </section>
+      </div>
+
+      <div className="content-wrap pt-0">
+        <InfiniteStoryFeed
+          initialStories={storyFeed.slice(0, 6)}
+          totalCount={storyFeed.length}
+          topics={topics}
+        />
       </div>
 
       <Footer />

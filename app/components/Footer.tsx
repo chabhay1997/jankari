@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaRss, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
-import { getSiteData, getStoryHref, type SocialLink } from "@/app/lib/siteData";
+import { getSiteData, getStoryHrefWithSource, getStoryImage, type SocialLink } from "@/app/lib/siteData";
 
 function getSocialIcon(platform: SocialLink["platform"]) {
   switch (platform) {
@@ -26,8 +26,8 @@ export default async function Footer() {
   const siteData = await getSiteData();
   const socialLinks = siteData.socialLinks ?? [];
   const usefulLinks = siteData.footer?.usefulLinks ?? [];
-  const editorsPicks = (siteData.footer?.editorsPicks ?? []).slice(0, 4);
-  const latestArticles = (siteData.footer?.latestArticles ?? []).slice(0, 4);
+  const editorsPicks = (siteData.footer?.editorsPicks ?? []).slice(0, 4).map((story) => ({ ...story, image: getStoryImage(story) }));
+  const latestArticles = (siteData.footer?.latestArticles ?? []).slice(0, 4).map((story) => ({ ...story, image: getStoryImage(story) }));
   const bottomLinks = siteData.footer?.bottomLinks ?? [];
 
   return (
@@ -94,7 +94,7 @@ export default async function Footer() {
               {editorsPicks.map((item) => (
                 <li key={item.slug} className="flex gap-3 items-start">
                   <img src={item.image} alt={item.title} className="w-16 h-14 object-cover flex-shrink-0" loading="lazy" />
-                  <Link href={getStoryHref(item.slug)} className="text-[13px] text-gray-300 hover:text-blue-400 transition-colors leading-snug">
+                  <Link href={getStoryHrefWithSource(item.slug, "footer")} className="text-[13px] text-gray-300 hover:text-blue-400 transition-colors leading-snug">
                     {item.title}
                   </Link>
                 </li>
@@ -109,7 +109,7 @@ export default async function Footer() {
             <ul className="flex flex-col gap-3 mt-3">
               {latestArticles.map((article) => (
                 <li key={article.slug} className="pb-3 border-b border-gray-700 last:border-0">
-                  <Link href={getStoryHref(article.slug)} className="text-[13px] text-gray-300 hover:text-blue-400 transition-colors leading-snug">
+                  <Link href={getStoryHrefWithSource(article.slug, "footer")} className="text-[13px] text-gray-300 hover:text-blue-400 transition-colors leading-snug">
                     {article.title}
                   </Link>
                 </li>

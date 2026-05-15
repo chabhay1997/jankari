@@ -2,6 +2,36 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { getSiteData } from "@/app/lib/siteData";
 
+export const metadata = {
+  title: "Disclaimer | Bharat Jankari",
+  description: "Read the Bharat Jankari disclaimer covering general information, editorial use, and important limitations for legal, financial, health, and business content.",
+  keywords: [
+    "Bharat Jankari disclaimer",
+    "news website disclaimer India",
+    "editorial disclaimer Bharat Jankari",
+  ],
+  alternates: {
+    canonical: "/disclaimer",
+  },
+  openGraph: {
+    title: "Disclaimer | Bharat Jankari",
+    description: "Read the Bharat Jankari disclaimer covering general information, editorial use, and important limitations for legal, financial, health, and business content.",
+    url: "/disclaimer",
+    type: "website",
+    siteName: "Bharat Jankari",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Disclaimer | Bharat Jankari",
+    description: "Read the Bharat Jankari disclaimer covering general information, editorial use, and important limitations for legal, financial, health, and business content.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default async function DisclaimerPage() {
   const siteData = await getSiteData();
 

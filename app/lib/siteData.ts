@@ -42,6 +42,18 @@ export interface StoryCard {
   excerpt?: string;
   createdAt?: string;
   section?: string;
+  tags?: string[];
+  location?: {
+    city?: string;
+    citySlug?: string;
+    state?: string;
+    stateSlug?: string;
+    country?: string;
+    countrySlug?: string;
+    latitude?: number | null;
+    longitude?: number | null;
+    scope?: string;
+  };
 }
 
 export interface Topic {
@@ -149,6 +161,20 @@ export function getTopicHref(slug: string) {
 
 export function getStoryHref(slug: string) {
   return `/stories/${slug}`;
+}
+
+export function getStoryHrefWithSource(slug: string, source?: string) {
+  const href = getStoryHref(slug);
+  return source ? `${href}?from=${encodeURIComponent(source)}` : href;
+}
+
+export function getStoryImage(story?: Pick<StoryCard, "image" | "topic" | "title"> | null) {
+  if (story?.image && String(story.image).trim().length > 0) {
+    return story.image;
+  }
+
+  const topicSlug = normalizeTopicSlug(story?.topic || "home");
+  return `/api/og?title=${encodeURIComponent(story?.title || "Bharat Jankari")}&topic=${encodeURIComponent(topicSlug)}`;
 }
 
 const topics: Topic[] = [
@@ -970,6 +996,8 @@ export async function getStoryBySlug(slug: string) {
     content?: string;
     section?: string;
     createdAt?: string;
+    tags?: string[];
+    location?: StoryCard["location"];
   }>(`/api/posts/slug/${slug}`);
 
   if (remoteStory) {
@@ -984,6 +1012,8 @@ export async function getStoryBySlug(slug: string) {
       content: remoteStory.content || "",
       section: remoteStory.section || "",
       createdAt: remoteStory.createdAt,
+      tags: remoteStory.tags || [],
+      location: remoteStory.location || {},
     };
   }
 
@@ -1038,11 +1068,15 @@ export async function getTopicStories(slug: string) {
     const enrichedRemoteStories = await enrichStoriesWithCanonicalTopics(remoteTopic.stories, normalizedSlug);
     const directMatches = enrichedRemoteStories.filter((story) => matchesRequestedTopic(story.topic, normalizedSlug));
 
+    if (groupedTopic) {
+      return enrichedRemoteStories;
+    }
+
     if (directMatches.length > 0) {
       return directMatches;
     }
 
-    return groupedTopic ? [] : enrichedRemoteStories;
+    return enrichedRemoteStories;
   }
 
   const parentSlugs = findParentTopicSlugs(normalizedSlug, siteData.topicGroups).filter((parentSlug) => parentSlug !== normalizedSlug);

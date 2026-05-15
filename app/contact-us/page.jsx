@@ -2,6 +2,37 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { getSiteData } from "@/app/lib/siteData";
 
+export const metadata = {
+  title: "Contact Bharat Jankari | Editorial, Partnership and Corrections",
+  description: "Contact Bharat Jankari for editorial questions, partnership opportunities, corrections, and reader support related to India news, business, health, technology, and trading stories.",
+  keywords: [
+    "contact Bharat Jankari",
+    "Bharat Jankari editorial contact",
+    "news corrections contact India",
+    "partnership contact Bharat Jankari",
+  ],
+  alternates: {
+    canonical: "/contact-us",
+  },
+  openGraph: {
+    title: "Contact Bharat Jankari | Editorial, Partnership and Corrections",
+    description: "Contact Bharat Jankari for editorial questions, partnership opportunities, corrections, and reader support related to India news, business, health, technology, and trading stories.",
+    url: "/contact-us",
+    type: "website",
+    siteName: "Bharat Jankari",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Bharat Jankari | Editorial, Partnership and Corrections",
+    description: "Contact Bharat Jankari for editorial questions, partnership opportunities, corrections, and reader support related to India news, business, health, technology, and trading stories.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default async function ContactUsPage() {
   const siteData = await getSiteData();
 

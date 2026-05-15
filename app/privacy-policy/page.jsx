@@ -2,6 +2,36 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { getSiteData } from "@/app/lib/siteData";
 
+export const metadata = {
+  title: "Privacy Policy | Bharat Jankari",
+  description: "Read the Bharat Jankari privacy policy to understand how this India news and blog platform handles reader data, privacy expectations, and site usage information.",
+  keywords: [
+    "Bharat Jankari privacy policy",
+    "news website privacy policy India",
+    "reader privacy Bharat Jankari",
+  ],
+  alternates: {
+    canonical: "/privacy-policy",
+  },
+  openGraph: {
+    title: "Privacy Policy | Bharat Jankari",
+    description: "Read the Bharat Jankari privacy policy to understand how this India news and blog platform handles reader data, privacy expectations, and site usage information.",
+    url: "/privacy-policy",
+    type: "website",
+    siteName: "Bharat Jankari",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacy Policy | Bharat Jankari",
+    description: "Read the Bharat Jankari privacy policy to understand how this India news and blog platform handles reader data, privacy expectations, and site usage information.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default async function PrivacyPolicyPage() {
   const siteData = await getSiteData();
 

@@ -2,6 +2,37 @@ import Header from "@/app/components/Header";
 import Footer from "@/app/components/Footer";
 import { getSiteData } from "@/app/lib/siteData";
 
+export const metadata = {
+  title: "About Bharat Jankari | India News, Business, Health and Technology Coverage",
+  description: "Learn about Bharat Jankari, a digital news and blog platform covering India news, business, health, technology, travel, politics, trading, and everyday insights.",
+  keywords: [
+    "about Bharat Jankari",
+    "Bharat Jankari news platform",
+    "India digital news website",
+    "business health technology news India",
+  ],
+  alternates: {
+    canonical: "/about-us",
+  },
+  openGraph: {
+    title: "About Bharat Jankari | India News, Business, Health and Technology Coverage",
+    description: "Learn about Bharat Jankari, a digital news and blog platform covering India news, business, health, technology, travel, politics, trading, and everyday insights.",
+    url: "/about-us",
+    type: "website",
+    siteName: "Bharat Jankari",
+    locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Bharat Jankari | India News, Business, Health and Technology Coverage",
+    description: "Learn about Bharat Jankari, a digital news and blog platform covering India news, business, health, technology, travel, politics, trading, and everyday insights.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+};
+
 export default async function AboutUsPage() {
   const siteData = await getSiteData();
 

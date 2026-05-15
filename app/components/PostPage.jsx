@@ -31,29 +31,6 @@ export default async function PostPage({ section, category, slug }) {
     const sectionLabel = section || post?.section;
     const seoDescription = getSeoDescription(post);
     const articleUrl = `${SITE_URL}/${categoryLabel}/${post?.slug || slug}`;
-    const articleSchema = post ? {
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: post.metaTitle || post.title,
-        description: seoDescription,
-        image: heroImage ? [heroImage] : undefined,
-        url: articleUrl,
-        mainEntityOfPage: articleUrl,
-        datePublished: post.createdAt || undefined,
-        dateModified: post.createdAt || undefined,
-        articleSection: sectionLabel,
-        keywords: post.keywords || undefined,
-        publisher: {
-            '@type': 'Organization',
-            name: 'Bharat Jankari',
-            url: SITE_URL,
-            logo: {
-                '@type': 'ImageObject',
-                url: `${SITE_URL}/favicon/fav.png`,
-            },
-        },
-    } : null;
-
     if (!post) {
         return (
             <div className="min-h-screen bg-white">
@@ -84,12 +61,6 @@ export default async function PostPage({ section, category, slug }) {
                 <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-8">
                     <article className="bg-white rounded-2xl border border-slate-300 p-5 md:p-8 shadow-sm">
                         <header className="mb-8">
-                            {articleSchema && (
-                                <script
-                                    type="application/ld+json"
-                                    dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-                                />
-                            )}
                             <div className="mb-4 flex flex-wrap gap-2">
                                 {sectionLabel && (
                                     <span className="text-xs font-bold uppercase tracking-widest text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full">
