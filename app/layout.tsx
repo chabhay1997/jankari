@@ -109,6 +109,27 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <head>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {`
+            try {
+              var storedTheme = localStorage.getItem('bj_theme');
+              var preferredTheme = storedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+              document.documentElement.setAttribute('data-theme', preferredTheme);
+              document.addEventListener('DOMContentLoaded', function () {
+                document.body.setAttribute('data-theme', preferredTheme);
+                document.body.classList.toggle('theme-dark', preferredTheme === 'dark');
+                document.body.classList.toggle('theme-light', preferredTheme === 'light');
+              });
+            } catch (error) {
+              document.documentElement.setAttribute('data-theme', 'light');
+              document.addEventListener('DOMContentLoaded', function () {
+                document.body.setAttribute('data-theme', 'light');
+                document.body.classList.add('theme-light');
+                document.body.classList.remove('theme-dark');
+              });
+            }
+          `}
+        </Script>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-DE6SV1BETD"
           strategy="afterInteractive"

@@ -58,8 +58,8 @@ export default async function PostPage({ section, category, slug }) {
             <Header siteData={siteData} />
 
             <main className="max-w-[1280px] mx-auto px-4 md:px-6 py-8 md:py-10">
-                <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-8">
-                    <article className="bg-white rounded-2xl border border-slate-300 p-5 md:p-8 shadow-sm">
+                <div className="grid grid-cols-1 gap-8">
+                    <article className="bg-white rounded-2xl border border-slate-300 p-5 shadow-sm md:p-8">
                         <header className="mb-8">
                             <div className="mb-4 flex flex-wrap gap-2">
                                 {sectionLabel && (
@@ -100,14 +100,6 @@ export default async function PostPage({ section, category, slug }) {
                         />
                     </article>
 
-                    <aside className="space-y-6 lg:sticky lg:top-24 self-start">
-                        <div className="p-4 bg-black text-white rounded-xl">
-                            <h3 className="font-bold text-lg mb-2">
-                                Trending in {categoryLabel.replace(/-/g, ' ')}
-                            </h3>
-                            <p className="text-sm text-slate-300">Stay updated with latest stories.</p>
-                        </div>
-                    </aside>
                 </div>
             </main>
 

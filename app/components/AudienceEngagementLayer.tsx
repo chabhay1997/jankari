@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:8080";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 180;
 
 function getCookie(name: string) {
@@ -17,16 +17,41 @@ function getCookie(name: string) {
   return match ? decodeURIComponent(match.split("=").slice(1).join("=")) : "";
 }
 
+function getStoredValue(name: string) {
+  const cookieValue = getCookie(name);
+  if (cookieValue) {
+    return cookieValue;
+  }
+
+  if (typeof window === "undefined") {
+    return "";
+  }
+
+  try {
+    return window.localStorage.getItem(name) || "";
+  } catch {
+    return "";
+  }
+}
+
 function setCookie(name: string, value: string) {
   if (typeof document === "undefined") {
     return;
   }
 
-  document.cookie = `${name}=${encodeURIComponent(value)}; path=/; max-age=${COOKIE_MAX_AGE}; samesite=lax`;
+  document.cookie = `${name}=${encodeURIComponent(value)}; Path=/; Max-Age=${COOKIE_MAX_AGE}; SameSite=Lax`;
+
+  if (typeof window !== "undefined") {
+    try {
+      window.localStorage.setItem(name, value);
+    } catch {
+      // Ignore storage issues and continue with cookie-only mode.
+    }
+  }
 }
 
 function getSessionId() {
-  const existing = getCookie("bj_session");
+  const existing = getStoredValue("bj_session");
   if (existing) {
     return existing;
   }
@@ -38,7 +63,7 @@ function getSessionId() {
 
 async function postAudience(path: string, payload: Record<string, unknown>) {
   try {
-    await fetch(`${API_BASE_URL}/api/audience/${path}`, {
+    await fetch(`/api/audience/${path}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -46,68 +71,190 @@ async function postAudience(path: string, payload: Record<string, unknown>) {
       body: JSON.stringify(payload),
     });
   } catch {
-    // Silent fail keeps the UX smooth if backend is temporarily unavailable.
+    // Keep engagement UX resilient even if tracking fails.
   }
 }
 
 export default function AudienceEngagementLayer() {
-  const [cookieChoice, setCookieChoice] = useState<"" | "accepted" | "rejected">("");
+  const pathname = usePathname();
+  const sessionId = useMemo(() => getSessionId(), []);
+  const activeMsRef = useRef(0);
+  const lastTickRef = useRef<number | null>(null);
+  const locationTimerReadyRef = useRef(false);
+  const newsletterTimerReadyRef = useRef(false);
+  const initialConsent = getStoredValue("bj_cookie_consent") as "" | "accepted" | "rejected";
+  const initialNewsletterState = getStoredValue("bj_newsletter_done");
+  const initialInteractionState = getStoredValue("bj_has_interacted");
+  const initialLocationCoords = getStoredValue("bj_location_coords");
+  const [isMounted, setIsMounted] = useState(false);
+  const [cookieChoice, setCookieChoice] = useState<"" | "accepted" | "rejected">(initialConsent || "");
+  const [cookieBannerVisible, setCookieBannerVisible] = useState(!initialConsent);
   const [locationPromptVisible, setLocationPromptVisible] = useState(false);
   const [newsletterOpen, setNewsletterOpen] = useState(false);
-  const [newsletterDone, setNewsletterDone] = useState(false);
+  const [newsletterDone, setNewsletterDone] = useState(initialNewsletterState === "yes" || initialNewsletterState === "dismissed");
+  const [hasInteracted, setHasInteracted] = useState(initialInteractionState === "yes");
+  const [coords, setCoords] = useState<{ latitude: number; longitude: number } | null>(() => {
+    const [latitude, longitude] = initialLocationCoords.split(",").map((value) => Number(value));
+    if (Number.isFinite(latitude) && Number.isFinite(longitude)) {
+      return { latitude, longitude };
+    }
+    return null;
+  });
   const [formState, setFormState] = useState({
     name: "",
     email: "",
     topics: "india,business,health",
     dailyBriefing: true,
-    nearbyNews: false,
+    nearbyNews: Boolean(initialLocationCoords),
   });
-  const [coords, setCoords] = useState<{ latitude: number; longitude: number } | null>(null);
-  const sessionId = useMemo(() => getSessionId(), []);
 
-  useEffect(() => {
-    const consent = getCookie("bj_cookie_consent") as "" | "accepted" | "rejected";
-    const newsletter = getCookie("bj_newsletter_done");
-    const locationChoice = getCookie("bj_location_choice");
-    const locationCoords = getCookie("bj_location_coords");
-
-    setCookieChoice(consent || "");
-    setNewsletterDone(newsletter === "yes");
-
-    if (locationCoords) {
-      const [latitude, longitude] = locationCoords.split(",").map((value) => Number(value));
-      if (Number.isFinite(latitude) && Number.isFinite(longitude)) {
-        setCoords({ latitude, longitude });
-      }
-    }
-
-    if (!consent) {
+  function queueNewsletterOpen(delayMs = 1200) {
+    const newsletterChoice = getStoredValue("bj_newsletter_done");
+    if (cookieChoice !== "accepted" || newsletterChoice || newsletterDone) {
       return;
     }
 
-    if (!locationChoice) {
-      const timer = window.setTimeout(() => setLocationPromptVisible(true), 1800);
-      return () => window.clearTimeout(timer);
-    }
+    window.setTimeout(() => {
+      const latestChoice = getStoredValue("bj_newsletter_done");
+      if (latestChoice || newsletterDone) {
+        return;
+      }
 
-    if (newsletter !== "yes") {
-      const timer = window.setTimeout(() => setNewsletterOpen(true), 3500);
-      return () => window.clearTimeout(timer);
-    }
+      newsletterTimerReadyRef.current = true;
+      setNewsletterOpen(true);
+    }, delayMs);
+  }
+
+  useEffect(() => {
+    setIsMounted(true);
   }, []);
 
-  async function handleCookieChoice(choice: "accepted" | "rejected") {
+  useEffect(() => {
+    const latestConsent = getStoredValue("bj_cookie_consent") as "" | "accepted" | "rejected";
+    if (latestConsent) {
+      setCookieChoice(latestConsent);
+      setCookieBannerVisible(false);
+    }
+
+    const locationChoice = getStoredValue("bj_location_choice");
+
+    if (locationChoice) {
+      locationTimerReadyRef.current = true;
+    }
+
+    if (initialNewsletterState) {
+      newsletterTimerReadyRef.current = true;
+    }
+  }, [initialNewsletterState]);
+
+  useEffect(() => {
+    void postAudience("event", {
+      sessionId,
+      type: "page_view",
+      source: "website",
+      path: pathname || "/",
+      metadata: {
+        totalVisitCount: Number(getCookie("bj_visit_count") || "0") + 1,
+      },
+    });
+
+    const nextVisitCount = Number(getStoredValue("bj_visit_count") || "0") + 1;
+    setCookie("bj_visit_count", String(nextVisitCount));
+    setCookie(`bj_page_seen_${(pathname || "/").replace(/[^a-z0-9]/gi, "_")}`, "yes");
+  }, [pathname, sessionId]);
+
+  useEffect(() => {
+    const markInteraction = () => {
+      setHasInteracted(true);
+      setCookie("bj_has_interacted", "yes");
+    };
+
+    window.addEventListener("click", markInteraction, { passive: true });
+    window.addEventListener("scroll", markInteraction, { passive: true });
+    window.addEventListener("keydown", markInteraction);
+
+    return () => {
+      window.removeEventListener("click", markInteraction);
+      window.removeEventListener("scroll", markInteraction);
+      window.removeEventListener("keydown", markInteraction);
+    };
+  }, []);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      if (document.visibilityState !== "visible") {
+        lastTickRef.current = null;
+        return;
+      }
+
+      const now = Date.now();
+      if (lastTickRef.current) {
+        activeMsRef.current += now - lastTickRef.current;
+      }
+      lastTickRef.current = now;
+
+      const engagedForOneMinute = activeMsRef.current >= 60000;
+      const newsletterChoice = getStoredValue("bj_newsletter_done");
+
+      if (
+        engagedForOneMinute
+        && cookieChoice === "accepted"
+        && hasInteracted
+        && !newsletterChoice
+        && !newsletterDone
+        && !newsletterOpen
+        && !newsletterTimerReadyRef.current
+      ) {
+        newsletterTimerReadyRef.current = true;
+        setNewsletterOpen(true);
+      }
+    }, 1000);
+
+    return () => window.clearInterval(interval);
+  }, [cookieChoice, hasInteracted, locationPromptVisible, newsletterDone, newsletterOpen]);
+
+  useEffect(() => {
+    if (cookieChoice !== "accepted" || newsletterDone || newsletterOpen) {
+      return;
+    }
+
+    const newsletterChoice = getStoredValue("bj_newsletter_done");
+    if (newsletterChoice || newsletterTimerReadyRef.current) {
+      return;
+    }
+
+    const fallbackTimer = window.setTimeout(() => {
+      const latestChoice = getStoredValue("bj_newsletter_done");
+      if (latestChoice || newsletterDone) {
+        return;
+      }
+
+      newsletterTimerReadyRef.current = true;
+      setNewsletterOpen(true);
+    }, 60000);
+
+    return () => window.clearTimeout(fallbackTimer);
+  }, [cookieChoice, newsletterDone, newsletterOpen]);
+
+  function handleCookieChoice(choice: "accepted" | "rejected") {
+    setCookieBannerVisible(false);
     setCookie("bj_cookie_consent", choice);
     setCookieChoice(choice);
-    await postAudience("cookie-consent", {
+
+    const locationChoice = getStoredValue("bj_location_choice");
+    if (!locationChoice && !locationTimerReadyRef.current) {
+      locationTimerReadyRef.current = true;
+      window.setTimeout(() => {
+        setLocationPromptVisible(true);
+      }, 200);
+    }
+
+    void postAudience("cookie-consent", {
       sessionId,
       type: choice === "accepted" ? "accept" : "reject",
       source: "website",
+      path: pathname || "/",
     });
-
-    if (!getCookie("bj_location_choice")) {
-      setTimeout(() => setLocationPromptVisible(true), 900);
-    }
   }
 
   function requestLocation() {
@@ -118,6 +265,7 @@ export default function AudienceEngagementLayer() {
         sessionId,
         type: "block",
         source: "website",
+        path: pathname || "/",
       });
       return;
     }
@@ -129,6 +277,9 @@ export default function AudienceEngagementLayer() {
       setFormState((current) => ({ ...current, nearbyNews: true }));
       setCookie("bj_location_choice", "allowed");
       setCookie("bj_location_coords", `${latitude},${longitude}`);
+      window.dispatchEvent(new CustomEvent("bj:location-updated", {
+        detail: { latitude, longitude },
+      }));
       setLocationPromptVisible(false);
       void postAudience("location-consent", {
         sessionId,
@@ -136,11 +287,9 @@ export default function AudienceEngagementLayer() {
         latitude,
         longitude,
         source: "website",
+        path: pathname || "/",
       });
-
-      if (!newsletterDone) {
-        setTimeout(() => setNewsletterOpen(true), 800);
-      }
+      queueNewsletterOpen();
     }, () => {
       setCookie("bj_location_choice", "blocked");
       setLocationPromptVisible(false);
@@ -148,6 +297,7 @@ export default function AudienceEngagementLayer() {
         sessionId,
         type: "block",
         source: "website",
+        path: pathname || "/",
       });
     }, {
       enableHighAccuracy: false,
@@ -170,6 +320,7 @@ export default function AudienceEngagementLayer() {
       locationConsent: coords ? "allowed" : "unknown",
       latitude: coords?.latitude,
       longitude: coords?.longitude,
+      path: pathname || "/",
     });
 
     setCookie("bj_newsletter_done", "yes");
@@ -179,25 +330,62 @@ export default function AudienceEngagementLayer() {
 
   function closeNewsletter() {
     setCookie("bj_newsletter_done", "dismissed");
+    setNewsletterDone(true);
     setNewsletterOpen(false);
+    void postAudience("event", {
+      sessionId,
+      type: "newsletter_dismiss",
+      source: "website",
+      path: pathname || "/",
+    });
+  }
+
+  if (!isMounted) {
+    return null;
   }
 
   return (
     <>
-      {!cookieChoice ? (
-        <div className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-4xl rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-2xl backdrop-blur">
+      {cookieBannerVisible ? (
+        <div className="fixed inset-x-3 bottom-3 z-[2147483647] mx-auto max-w-4xl isolate pointer-events-auto rounded-[28px] border border-slate-200 bg-white/95 p-4 shadow-2xl backdrop-blur md:inset-x-4 md:bottom-4">
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
               <p className="text-[11px] font-black uppercase tracking-[0.24em] text-slate-500">Cookie Choice</p>
               <p className="mt-2 text-sm leading-6 text-slate-700">
-                We use cookies to remember preferred topics, local-news choices, and newsletter prompts so readers get a smoother daily briefing experience.
+                We use cookies to remember preferred topics, local-news choices, and briefing prompts for a smoother reading experience.
               </p>
             </div>
-            <div className="flex gap-2">
-              <button type="button" onClick={() => void handleCookieChoice("rejected")} className="rounded-full border border-slate-200 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-600">
-                Reject
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <button
+                type="button"
+                onPointerDown={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  handleCookieChoice("rejected");
+                }}
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  handleCookieChoice("rejected");
+                }}
+                className="rounded-full border border-slate-200 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-600"
+              >
+                Decline
               </button>
-              <button type="button" onClick={() => void handleCookieChoice("accepted")} className="rounded-full bg-blue-600 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white">
+              <button
+                type="button"
+                onPointerDown={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  handleCookieChoice("accepted");
+                }}
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  handleCookieChoice("accepted");
+                }}
+                className="rounded-full bg-blue-600 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white"
+              >
                 Accept
               </button>
             </div>
@@ -205,18 +393,28 @@ export default function AudienceEngagementLayer() {
         </div>
       ) : null}
 
-      {cookieChoice && locationPromptVisible ? (
-        <div className="fixed bottom-6 left-6 z-40 max-w-sm rounded-[26px] border border-slate-200 bg-white p-5 shadow-xl">
+      {cookieChoice === "accepted" && locationPromptVisible ? (
+        <div className="fixed inset-x-3 bottom-3 z-40 max-w-sm border border-slate-200 bg-white p-5 shadow-xl md:bottom-6 md:left-6 md:right-auto">
           <p className="text-[11px] font-black uppercase tracking-[0.24em] text-slate-500">Local News</p>
           <h3 className="mt-2 text-lg font-black text-slate-950">Show stories near you</h3>
           <p className="mt-2 text-sm leading-6 text-slate-600">
-            Allow location to surface nearby city and region stories first, while still keeping India and world coverage visible.
+            Allow location so we can boost nearby city and region stories first.
           </p>
-          <div className="mt-4 flex gap-2">
-            <button type="button" onClick={() => {
-              setCookie("bj_location_choice", "later");
-              setLocationPromptVisible(false);
-            }} className="rounded-full border border-slate-200 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-600">
+          <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+            <button
+              type="button"
+              onClick={() => {
+                setCookie("bj_location_choice", "later");
+                setLocationPromptVisible(false);
+                void postAudience("location-consent", {
+                  sessionId,
+                  type: "later",
+                  source: "website",
+                  path: pathname || "/",
+                });
+              }}
+              className="rounded-full border border-slate-200 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-600"
+            >
               Not now
             </button>
             <button type="button" onClick={requestLocation} className="rounded-full bg-slate-950 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-white">
@@ -227,66 +425,45 @@ export default function AudienceEngagementLayer() {
       ) : null}
 
       {cookieChoice === "accepted" && !newsletterDone && newsletterOpen ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/45 p-4">
-          <div className="w-full max-w-xl rounded-[30px] border border-slate-200 bg-white p-6 shadow-2xl">
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="text-[11px] font-black uppercase tracking-[0.24em] text-slate-500">Daily Briefing</p>
-                <h3 className="mt-2 text-2xl font-black text-slate-950">Get Bharat Jankari in your inbox</h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Save your name, email, and preferred topics to receive fresh blogs, India updates, and nearby reads in one daily summary.
-                </p>
-              </div>
-              <button type="button" onClick={closeNewsletter} className="text-slate-400 hover:text-slate-700">✕</button>
+        <div className="fixed inset-0 z-[160] flex items-start justify-center bg-black/40 px-4 pt-20">
+          <div className="relative w-full max-w-[520px] border border-white/10 bg-black p-6 text-white shadow-2xl">
+            <button
+              type="button"
+              onClick={closeNewsletter}
+              className="absolute right-4 top-4 text-xl leading-none text-white/60 hover:text-white"
+              aria-label="Close subscribe popup"
+            >
+              ×
+            </button>
+            <div className="pr-8">
+              <p className="text-[11px] font-black uppercase tracking-[0.24em] text-white/60">Daily Briefing</p>
+              <h3 className="mt-2 text-2xl font-black">Get Bharat Jankari in your inbox</h3>
+              <p className="mt-2 text-sm text-white/70">
+                Add your name and email for daily updates.
+              </p>
             </div>
 
-            <form onSubmit={(event) => void handleNewsletterSubmit(event)} className="mt-5 grid gap-4 md:grid-cols-2">
-              <input
-                type="text"
-                required
-                placeholder="Your name"
-                value={formState.name}
-                onChange={(event) => setFormState((current) => ({ ...current, name: event.target.value }))}
-                className="rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-blue-500"
-              />
-              <input
-                type="email"
-                required
-                placeholder="name@example.com"
-                value={formState.email}
-                onChange={(event) => setFormState((current) => ({ ...current, email: event.target.value }))}
-                className="rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-blue-500"
-              />
-              <input
-                type="text"
-                value={formState.topics}
-                onChange={(event) => setFormState((current) => ({ ...current, topics: event.target.value }))}
-                placeholder="india,business,health,travel"
-                className="md:col-span-2 rounded-2xl border border-slate-200 px-4 py-3 text-sm outline-none focus:border-blue-500"
-              />
-              <label className="flex items-center gap-2 text-sm text-slate-600">
+            <form onSubmit={(event) => void handleNewsletterSubmit(event)} className="mt-5 flex flex-col gap-3">
                 <input
-                  type="checkbox"
-                  checked={formState.dailyBriefing}
-                  onChange={(event) => setFormState((current) => ({ ...current, dailyBriefing: event.target.checked }))}
+                  type="text"
+                  required
+                  placeholder="Your name"
+                  value={formState.name}
+                  onChange={(event) => setFormState((current) => ({ ...current, name: event.target.value }))}
+                  className="w-full border border-white/20 bg-white/8 px-4 py-3 text-sm text-white placeholder:text-white/45 outline-none focus:border-white/50"
                 />
-                Send daily briefing
-              </label>
-              <label className="flex items-center gap-2 text-sm text-slate-600">
                 <input
-                  type="checkbox"
-                  checked={formState.nearbyNews}
-                  onChange={(event) => setFormState((current) => ({ ...current, nearbyNews: event.target.checked }))}
+                  type="email"
+                  required
+                  placeholder="name@example.com"
+                  value={formState.email}
+                  onChange={(event) => setFormState((current) => ({ ...current, email: event.target.value }))}
+                  className="w-full border border-white/20 bg-white/8 px-4 py-3 text-sm text-white placeholder:text-white/45 outline-none focus:border-white/50"
                 />
-                Prefer nearby and local news
-              </label>
-              <div className="md:col-span-2 flex items-center justify-between gap-3">
-                <p className="text-xs text-slate-400">You can update these preferences later from future email links or admin support.</p>
-                <button type="submit" className="rounded-full bg-blue-600 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.16em] text-white">
-                  Save my briefing
+                <button type="submit" className="w-full border border-white/20 bg-white px-4 py-3 text-xs font-bold uppercase tracking-[0.16em] text-black">
+                  Subscribe
                 </button>
-              </div>
-            </form>
+              </form>
           </div>
         </div>
       ) : null}

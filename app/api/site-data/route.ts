@@ -6,6 +6,7 @@ export async function GET() {
   try {
     const res = await fetch(`${apiBaseUrl}/api/site-data`, {
       cache: "no-store",
+      signal: AbortSignal.timeout(700),
     });
 
     if (!res.ok) {

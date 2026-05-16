@@ -1,0 +1,1303 @@
+{
+  "audience_events": [
+    {
+      "id": "evt_1778931423230_pb2c8356",
+      "createdAt": "2026-05-16T11:37:03.231Z",
+      "type": "page_view",
+      "sessionId": "bj_1778931090338_1knfwvgk",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 3
+      }
+    },
+    {
+      "id": "evt_1778931219881_jnrzy9wd",
+      "createdAt": "2026-05-16T11:33:39.881Z",
+      "type": "page_view",
+      "sessionId": "bj_1778931090338_1knfwvgk",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 2
+      }
+    },
+    {
+      "id": "evt_1778931100066_bijpz17y",
+      "createdAt": "2026-05-16T11:31:40.066Z",
+      "type": "newsletter_dismiss",
+      "sessionId": "bj_1778931090338_1knfwvgk",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {}
+    },
+    {
+      "id": "evt_1778931096590_t7t4nutg",
+      "createdAt": "2026-05-16T11:31:36.590Z",
+      "type": "location_allow",
+      "sessionId": "bj_1778931090338_1knfwvgk",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "latitude": 28.6357,
+      "longitude": 77.4704
+    },
+    {
+      "id": "evt_1778931093064_jn6scbrm",
+      "createdAt": "2026-05-16T11:31:33.064Z",
+      "type": "cookie_accept",
+      "sessionId": "bj_1778931090338_1knfwvgk",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software"
+    },
+    {
+      "id": "evt_1778931090417_91765q7b",
+      "createdAt": "2026-05-16T11:31:30.417Z",
+      "type": "page_view",
+      "sessionId": "bj_1778931090338_1knfwvgk",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    },
+    {
+      "id": "evt_1778930963321_69rqwec9",
+      "createdAt": "2026-05-16T11:29:23.321Z",
+      "type": "page_view",
+      "sessionId": "bj_1778930765208_9um5tesz",
+      "source": "website",
+      "path": "/stories/mental-health-digital-burnout-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/stories/mental-health-digital-burnout-2026?from=topic",
+      "metadata": {
+        "totalVisitCount": 7
+      }
+    },
+    {
+      "id": "evt_1778930841728_pntj71rv",
+      "createdAt": "2026-05-16T11:27:21.728Z",
+      "type": "location_allow",
+      "sessionId": "bj_1778930765208_9um5tesz",
+      "source": "website",
+      "path": "/stories/mental-health-digital-burnout-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/stories/mental-health-digital-burnout-2026?from=topic",
+      "latitude": 28.6359,
+      "longitude": 77.4705
+    },
+    {
+      "id": "evt_1778930836966_7lnch0tx",
+      "createdAt": "2026-05-16T11:27:16.966Z",
+      "type": "newsletter_subscribe",
+      "sessionId": "bj_1778930765208_9um5tesz",
+      "source": "website",
+      "path": "/stories/mental-health-digital-burnout-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/stories/mental-health-digital-burnout-2026?from=topic",
+      "latitude": null,
+      "longitude": null,
+      "metadata": {
+        "email": "ch.abhay1997@gmail.com",
+        "topics": [
+          "india",
+          "business",
+          "health"
+        ],
+        "dailyBriefing": true,
+        "nearbyNews": false
+      }
+    },
+    {
+      "id": "evt_1778930814674_0ikin3m8",
+      "createdAt": "2026-05-16T11:26:54.674Z",
+      "type": "page_view",
+      "sessionId": "bj_1778930765208_9um5tesz",
+      "source": "website",
+      "path": "/stories/mental-health-digital-burnout-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/stories/mental-health-digital-burnout-2026?from=topic",
+      "metadata": {
+        "totalVisitCount": 6
+      }
+    },
+    {
+      "id": "evt_1778930803935_j0use86u",
+      "createdAt": "2026-05-16T11:26:43.935Z",
+      "type": "page_view",
+      "sessionId": "bj_1778930765208_9um5tesz",
+      "source": "website",
+      "path": "/topics/mental-health",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/mental-health",
+      "metadata": {
+        "totalVisitCount": 5
+      }
+    },
+    {
+      "id": "evt_1778930781163_ywfnwjrc",
+      "createdAt": "2026-05-16T11:26:21.163Z",
+      "type": "page_view",
+      "sessionId": "bj_1778930765208_9um5tesz",
+      "source": "website",
+      "path": "/stories/mental-health-digital-burnout-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/stories/mental-health-digital-burnout-2026?from=topic",
+      "metadata": {
+        "totalVisitCount": 4
+      }
+    },
+    {
+      "id": "evt_1778930778009_vsxf3gdr",
+      "createdAt": "2026-05-16T11:26:18.009Z",
+      "type": "page_view",
+      "sessionId": "bj_1778930765208_9um5tesz",
+      "source": "website",
+      "path": "/topics/health",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/health",
+      "metadata": {
+        "totalVisitCount": 3
+      }
+    },
+    {
+      "id": "evt_1778930776539_pjxxl2jb",
+      "createdAt": "2026-05-16T11:26:16.539Z",
+      "type": "page_view",
+      "sessionId": "bj_1778930765208_9um5tesz",
+      "source": "website",
+      "path": "/topics/travel",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/travel",
+      "metadata": {
+        "totalVisitCount": 2
+      }
+    },
+    {
+      "id": "evt_1778930766748_sq82779t",
+      "createdAt": "2026-05-16T11:26:06.748Z",
+      "type": "cookie_accept",
+      "sessionId": "bj_1778930765208_9um5tesz",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software"
+    },
+    {
+      "id": "evt_1778930765227_41mc0j9q",
+      "createdAt": "2026-05-16T11:26:05.227Z",
+      "type": "page_view",
+      "sessionId": "bj_1778930765208_9um5tesz",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    },
+    {
+      "id": "evt_1778930698236_8xuitq2d",
+      "createdAt": "2026-05-16T11:24:58.236Z",
+      "type": "page_view",
+      "sessionId": "bj_1778930054332_2etd8mmr",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 3
+      }
+    },
+    {
+      "id": "evt_1778930685849_xmksu0z2",
+      "createdAt": "2026-05-16T11:24:45.849Z",
+      "type": "location_allow",
+      "sessionId": "bj_1778930054332_2etd8mmr",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "latitude": 28.6358,
+      "longitude": 77.4704
+    },
+    {
+      "id": "evt_1778930679589_pv39npnp",
+      "createdAt": "2026-05-16T11:24:39.589Z",
+      "type": "newsletter_dismiss",
+      "sessionId": "bj_1778930054332_2etd8mmr",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {}
+    },
+    {
+      "id": "evt_1778930600571_591susvp",
+      "createdAt": "2026-05-16T11:23:20.571Z",
+      "type": "page_view",
+      "sessionId": "bj_1778930054332_2etd8mmr",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 2
+      }
+    },
+    {
+      "id": "evt_1778930591152_f20vl6z0",
+      "createdAt": "2026-05-16T11:23:11.152Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 33
+      }
+    },
+    {
+      "id": "evt_1778930563315_g6z4fbgf",
+      "createdAt": "2026-05-16T11:22:43.315Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 32
+      }
+    },
+    {
+      "id": "evt_1778930056181_oqxbbeca",
+      "createdAt": "2026-05-16T11:14:16.181Z",
+      "type": "cookie_accept",
+      "sessionId": "bj_1778930054332_2etd8mmr",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software"
+    },
+    {
+      "id": "evt_1778930054360_f7vs64pw",
+      "createdAt": "2026-05-16T11:14:14.360Z",
+      "type": "page_view",
+      "sessionId": "bj_1778930054332_2etd8mmr",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    },
+    {
+      "id": "evt_1778930015762_44aefpd8",
+      "createdAt": "2026-05-16T11:13:35.762Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 31
+      }
+    },
+    {
+      "id": "evt_1778930015745_9n1wikc9",
+      "createdAt": "2026-05-16T11:13:35.745Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929813253_b8z6eq2c",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 7
+      }
+    },
+    {
+      "id": "evt_1778929963335_86rc5hq3",
+      "createdAt": "2026-05-16T11:12:43.335Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929813253_b8z6eq2c",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 6
+      }
+    },
+    {
+      "id": "evt_1778929957935_6563fg47",
+      "createdAt": "2026-05-16T11:12:37.935Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929813253_b8z6eq2c",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 5
+      }
+    },
+    {
+      "id": "evt_1778929920379_fm7r2f52",
+      "createdAt": "2026-05-16T11:12:00.379Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 30
+      }
+    },
+    {
+      "id": "evt_1778929905006_kbg1xi0q",
+      "createdAt": "2026-05-16T11:11:45.006Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929813253_b8z6eq2c",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 3
+      }
+    },
+    {
+      "id": "evt_1778929894565_md4j8yb9",
+      "createdAt": "2026-05-16T11:11:34.565Z",
+      "type": "location_allow",
+      "sessionId": "bj_1778929813253_b8z6eq2c",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "latitude": 28.6358,
+      "longitude": 77.4705
+    },
+    {
+      "id": "evt_1778929820462_aswmpjc3",
+      "createdAt": "2026-05-16T11:10:20.462Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929813253_b8z6eq2c",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 2
+      }
+    },
+    {
+      "id": "evt_1778929814266_ewgakbxe",
+      "createdAt": "2026-05-16T11:10:14.266Z",
+      "type": "cookie_accept",
+      "sessionId": "bj_1778929813253_b8z6eq2c",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software"
+    },
+    {
+      "id": "evt_1778929813294_ww7u1xjh",
+      "createdAt": "2026-05-16T11:10:13.294Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929813253_b8z6eq2c",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    },
+    {
+      "id": "evt_1778929808503_9c0npnnr",
+      "createdAt": "2026-05-16T11:10:08.503Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929808395_w8wgghb2",
+      "source": "website",
+      "path": "/topics/softwarehttp:/localhost:3000/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/softwarehttp:/localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    },
+    {
+      "id": "evt_1778929801214_ql73mj1b",
+      "createdAt": "2026-05-16T11:10:01.214Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 29
+      }
+    },
+    {
+      "id": "evt_1778929791801_4o1xk5wo",
+      "createdAt": "2026-05-16T11:09:51.801Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929653965_jl91kqqn",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 4
+      }
+    },
+    {
+      "id": "evt_1778929759990_jq6hgw1a",
+      "createdAt": "2026-05-16T11:09:19.990Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 28
+      }
+    },
+    {
+      "id": "evt_1778929759972_svc9cbxt",
+      "createdAt": "2026-05-16T11:09:19.972Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929653965_jl91kqqn",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 3
+      }
+    },
+    {
+      "id": "evt_1778929668884_nasq6x5e",
+      "createdAt": "2026-05-16T11:07:48.884Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929653965_jl91kqqn",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 2
+      }
+    },
+    {
+      "id": "evt_1778929660937_88oyrerk",
+      "createdAt": "2026-05-16T11:07:40.937Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 27
+      }
+    },
+    {
+      "id": "evt_1778929654775_q8t4zvug",
+      "createdAt": "2026-05-16T11:07:34.775Z",
+      "type": "cookie_accept",
+      "sessionId": "bj_1778929653965_jl91kqqn",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software"
+    },
+    {
+      "id": "evt_1778929653988_ig9a5lhk",
+      "createdAt": "2026-05-16T11:07:33.988Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929653965_jl91kqqn",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    },
+    {
+      "id": "evt_1778929646264_zb17w05k",
+      "createdAt": "2026-05-16T11:07:26.264Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929476795_ssabyknl",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 6
+      }
+    },
+    {
+      "id": "evt_1778929638994_8kteoqla",
+      "createdAt": "2026-05-16T11:07:18.994Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929476795_ssabyknl",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 5
+      }
+    },
+    {
+      "id": "evt_1778929581178_hswfq4st",
+      "createdAt": "2026-05-16T11:06:21.178Z",
+      "type": "cookie_accept",
+      "sessionId": "bj_1778929476795_ssabyknl",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software"
+    },
+    {
+      "id": "evt_1778929575443_rigc9of3",
+      "createdAt": "2026-05-16T11:06:15.443Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929476795_ssabyknl",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 4
+      }
+    },
+    {
+      "id": "evt_1778929476828_c5fyx3o1",
+      "createdAt": "2026-05-16T11:04:36.828Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929476795_ssabyknl",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 2
+      }
+    },
+    {
+      "id": "evt_1778929460254_788biiqy",
+      "createdAt": "2026-05-16T11:04:20.254Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 26
+      }
+    },
+    {
+      "id": "evt_1778929382551_kzbmabhb",
+      "createdAt": "2026-05-16T11:03:02.551Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929128303_quygqmhq",
+      "source": "website",
+      "path": "/stories/mental-health-digital-burnout-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/stories/mental-health-digital-burnout-2026?from=topic",
+      "metadata": {
+        "totalVisitCount": 6
+      }
+    },
+    {
+      "id": "evt_1778929378375_ueu83de5",
+      "createdAt": "2026-05-16T11:02:58.375Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929128303_quygqmhq",
+      "source": "website",
+      "path": "/topics/mental-health",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/mental-health",
+      "metadata": {
+        "totalVisitCount": 5
+      }
+    },
+    {
+      "id": "evt_1778929238313_2ra0khjj",
+      "createdAt": "2026-05-16T11:00:38.313Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929128303_quygqmhq",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 4
+      }
+    },
+    {
+      "id": "evt_1778929232382_1i34s6ow",
+      "createdAt": "2026-05-16T11:00:32.382Z",
+      "type": "newsletter_dismiss",
+      "sessionId": "bj_1778929128303_quygqmhq",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {}
+    },
+    {
+      "id": "evt_1778929226557_skhlblo8",
+      "createdAt": "2026-05-16T11:00:26.557Z",
+      "type": "location_allow",
+      "sessionId": "bj_1778929128303_quygqmhq",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "latitude": 28.6357,
+      "longitude": 77.4705
+    },
+    {
+      "id": "evt_1778929129958_7fnwmpdk",
+      "createdAt": "2026-05-16T10:58:49.958Z",
+      "type": "cookie_accept",
+      "sessionId": "bj_1778929128303_quygqmhq",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software"
+    },
+    {
+      "id": "evt_1778929128415_r37dey43",
+      "createdAt": "2026-05-16T10:58:48.415Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929128303_quygqmhq",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 2
+      }
+    },
+    {
+      "id": "evt_1778929128378_2e12zg4e",
+      "createdAt": "2026-05-16T10:58:48.378Z",
+      "type": "page_view",
+      "sessionId": "bj_1778929128303_quygqmhq",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    },
+    {
+      "id": "evt_1778929007816_b3f713eb",
+      "createdAt": "2026-05-16T10:56:47.816Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/software",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/software",
+      "metadata": {
+        "totalVisitCount": 24
+      }
+    },
+    {
+      "id": "evt_1778929002143_27acogtr",
+      "createdAt": "2026-05-16T10:56:42.143Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/personal-finance",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/personal-finance",
+      "metadata": {
+        "totalVisitCount": 23
+      }
+    },
+    {
+      "id": "evt_1778928993896_nywvrlx8",
+      "createdAt": "2026-05-16T10:56:33.896Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/live-scores",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/live-scores",
+      "metadata": {
+        "totalVisitCount": 22
+      }
+    },
+    {
+      "id": "evt_1778928770496_7dp2s8j2",
+      "createdAt": "2026-05-16T10:52:50.496Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/live-scores",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/live-scores",
+      "metadata": {
+        "totalVisitCount": 20
+      }
+    },
+    {
+      "id": "evt_1778928257749_sjd75zdu",
+      "createdAt": "2026-05-16T10:44:17.749Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/live-scores",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/live-scores",
+      "metadata": {
+        "totalVisitCount": 18
+      }
+    },
+    {
+      "id": "evt_1778928253200_iwwmkpse",
+      "createdAt": "2026-05-16T10:44:13.200Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 17
+      }
+    },
+    {
+      "id": "evt_1778927073269_1drga328",
+      "createdAt": "2026-05-16T10:24:33.269Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 15
+      }
+    },
+    {
+      "id": "evt_1778927019491_il0hpbjq",
+      "createdAt": "2026-05-16T10:23:39.491Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/health",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/health",
+      "metadata": {
+        "totalVisitCount": 14
+      }
+    },
+    {
+      "id": "evt_1778927016478_rzfyabov",
+      "createdAt": "2026-05-16T10:23:36.478Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/lifestyle",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/lifestyle",
+      "metadata": {
+        "totalVisitCount": 13
+      }
+    },
+    {
+      "id": "evt_1778926987859_o8l3laxn",
+      "createdAt": "2026-05-16T10:23:07.859Z",
+      "type": "cookie_accept",
+      "sessionId": "bj_1778926986681_0fmojmgr",
+      "source": "website",
+      "path": "/topics/mental-health",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/mental-health"
+    },
+    {
+      "id": "evt_1778926986693_5u53dyp9",
+      "createdAt": "2026-05-16T10:23:06.693Z",
+      "type": "page_view",
+      "sessionId": "bj_1778926986681_0fmojmgr",
+      "source": "website",
+      "path": "/topics/mental-health",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/mental-health",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    },
+    {
+      "id": "evt_1778926976407_5ygpmse3",
+      "createdAt": "2026-05-16T10:22:56.407Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/mental-health",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/mental-health",
+      "metadata": {
+        "totalVisitCount": 12
+      }
+    },
+    {
+      "id": "evt_1778926969256_vdf1lzor",
+      "createdAt": "2026-05-16T10:22:49.256Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/physical-fitness",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/physical-fitness",
+      "metadata": {
+        "totalVisitCount": 11
+      }
+    },
+    {
+      "id": "evt_1778926959040_aq6uwx80",
+      "createdAt": "2026-05-16T10:22:39.040Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/hotels",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/hotels",
+      "metadata": {
+        "totalVisitCount": 10
+      }
+    },
+    {
+      "id": "evt_1778926766524_deg0dte4",
+      "createdAt": "2026-05-16T10:19:26.524Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/hotels",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/hotels",
+      "metadata": {
+        "totalVisitCount": 9
+      }
+    },
+    {
+      "id": "evt_1778926741171_sktr7ksr",
+      "createdAt": "2026-05-16T10:19:01.171Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/hotels",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/hotels",
+      "metadata": {
+        "totalVisitCount": 8
+      }
+    },
+    {
+      "id": "evt_1778926044287_jc8hpito",
+      "createdAt": "2026-05-16T10:07:24.287Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/topics/hotels",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/hotels",
+      "metadata": {
+        "totalVisitCount": 7
+      }
+    },
+    {
+      "id": "evt_1778925999372_ecbmx6d8",
+      "createdAt": "2026-05-16T10:06:39.372Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 6
+      }
+    },
+    {
+      "id": "evt_1778925988578_gdp53r23",
+      "createdAt": "2026-05-16T10:06:28.578Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 5
+      }
+    },
+    {
+      "id": "evt_1778925982628_5qorhxeb",
+      "createdAt": "2026-05-16T10:06:22.628Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 4
+      }
+    },
+    {
+      "id": "evt_1778925928972_jz8450lz",
+      "createdAt": "2026-05-16T10:05:28.972Z",
+      "type": "location_block",
+      "sessionId": "bj_1778925858946_nxe381hf",
+      "source": "website",
+      "path": "/stories/mental-health-digital-burnout-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/stories/mental-health-digital-burnout-2026?from=topic",
+      "latitude": null,
+      "longitude": null
+    },
+    {
+      "id": "evt_1778925924699_39x08x55",
+      "createdAt": "2026-05-16T10:05:24.699Z",
+      "type": "newsletter_dismiss",
+      "sessionId": "bj_1778925858946_nxe381hf",
+      "source": "website",
+      "path": "/stories/mental-health-digital-burnout-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/stories/mental-health-digital-burnout-2026?from=topic",
+      "metadata": {}
+    },
+    {
+      "id": "evt_1778925900802_vh26kbff",
+      "createdAt": "2026-05-16T10:05:00.802Z",
+      "type": "page_view",
+      "sessionId": "bj_1778925858946_nxe381hf",
+      "source": "website",
+      "path": "/stories/mental-health-digital-burnout-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/stories/mental-health-digital-burnout-2026?from=topic",
+      "metadata": {
+        "totalVisitCount": 7
+      }
+    },
+    {
+      "id": "evt_1778925897362_nbh78in6",
+      "createdAt": "2026-05-16T10:04:57.362Z",
+      "type": "page_view",
+      "sessionId": "bj_1778925858946_nxe381hf",
+      "source": "website",
+      "path": "/topics/mental-health",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/mental-health",
+      "metadata": {
+        "totalVisitCount": 6
+      }
+    },
+    {
+      "id": "evt_1778925890617_u3dh8e6q",
+      "createdAt": "2026-05-16T10:04:50.617Z",
+      "type": "page_view",
+      "sessionId": "bj_1778925858946_nxe381hf",
+      "source": "website",
+      "path": "/stories/mental-health-digital-burnout-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/stories/mental-health-digital-burnout-2026?from=topic",
+      "metadata": {
+        "totalVisitCount": 5
+      }
+    },
+    {
+      "id": "evt_1778925887063_sx61ohfq",
+      "createdAt": "2026-05-16T10:04:47.063Z",
+      "type": "page_view",
+      "sessionId": "bj_1778925858946_nxe381hf",
+      "source": "website",
+      "path": "/topics/mental-health",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/mental-health",
+      "metadata": {
+        "totalVisitCount": 4
+      }
+    },
+    {
+      "id": "evt_1778925872772_7a3sf9vn",
+      "createdAt": "2026-05-16T10:04:32.772Z",
+      "type": "page_view",
+      "sessionId": "bj_1778925858946_nxe381hf",
+      "source": "website",
+      "path": "/stories/mental-health-digital-burnout-2026",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/stories/mental-health-digital-burnout-2026?from=topic",
+      "metadata": {
+        "totalVisitCount": 3
+      }
+    },
+    {
+      "id": "evt_1778925870158_2vcaditg",
+      "createdAt": "2026-05-16T10:04:30.158Z",
+      "type": "page_view",
+      "sessionId": "bj_1778925858946_nxe381hf",
+      "source": "website",
+      "path": "/topics/mental-health",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/topics/mental-health",
+      "metadata": {
+        "totalVisitCount": 2
+      }
+    },
+    {
+      "id": "evt_1778925859656_rczu92e2",
+      "createdAt": "2026-05-16T10:04:19.656Z",
+      "type": "cookie_accept",
+      "sessionId": "bj_1778925858946_nxe381hf",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/"
+    },
+    {
+      "id": "evt_1778925858969_4zysnbs2",
+      "createdAt": "2026-05-16T10:04:18.969Z",
+      "type": "page_view",
+      "sessionId": "bj_1778925858946_nxe381hf",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    },
+    {
+      "id": "evt_1778925851485_o1uuf7y9",
+      "createdAt": "2026-05-16T10:04:11.485Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 3
+      }
+    },
+    {
+      "id": "evt_1778925843849_eljjxgoh",
+      "createdAt": "2026-05-16T10:04:03.849Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 2
+      }
+    },
+    {
+      "id": "evt_1778925842289_x8k4jf5m",
+      "createdAt": "2026-05-16T10:04:02.289Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    },
+    {
+      "id": "evt_1778925831265_12l8e53r",
+      "createdAt": "2026-05-16T10:03:51.265Z",
+      "type": "cookie_accept",
+      "sessionId": "bj_1778925829489_r2x35d4f",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/"
+    },
+    {
+      "id": "evt_1778925829513_748hob6o",
+      "createdAt": "2026-05-16T10:03:49.513Z",
+      "type": "page_view",
+      "sessionId": "bj_1778925829489_r2x35d4f",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    },
+    {
+      "id": "evt_1778925823625_ulpej0ay",
+      "createdAt": "2026-05-16T10:03:43.625Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 8
+      }
+    },
+    {
+      "id": "evt_1778925719171_yatqzah0",
+      "createdAt": "2026-05-16T10:01:59.171Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 7
+      }
+    },
+    {
+      "id": "evt_1778925714187_8kcz9fdf",
+      "createdAt": "2026-05-16T10:01:54.187Z",
+      "type": "newsletter_dismiss",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {}
+    },
+    {
+      "id": "evt_1778925581590_q9lah9y7",
+      "createdAt": "2026-05-16T09:59:41.590Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 6
+      }
+    },
+    {
+      "id": "evt_1778925298241_n0v66ywh",
+      "createdAt": "2026-05-16T09:54:58.241Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 5
+      }
+    },
+    {
+      "id": "evt_1778925290095_x5vzpquv",
+      "createdAt": "2026-05-16T09:54:50.095Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 4
+      }
+    },
+    {
+      "id": "evt_1778924942848_0hpsl10x",
+      "createdAt": "2026-05-16T09:49:02.848Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 3
+      }
+    },
+    {
+      "id": "evt_1778924825720_w2yg1qil",
+      "createdAt": "2026-05-16T09:47:05.720Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 2
+      }
+    },
+    {
+      "id": "evt_1778924824126_j8ak4bwz",
+      "createdAt": "2026-05-16T09:47:04.126Z",
+      "type": "page_view",
+      "sessionId": "bj_1778786350674_jxceh3bc",
+      "source": "website",
+      "path": "/",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/148.0.0.0 Safari/537.36",
+      "referrer": "http://localhost:3000/",
+      "metadata": {
+        "totalVisitCount": 1
+      }
+    }
+  ],
+  "newsletter_subscribers": [
+    {
+      "id": "sub_1778930836964_ltdb2tq1",
+      "subscribedAt": "2026-05-16T11:27:16.964Z",
+      "lastUpdatedAt": "2026-05-16T11:27:16.964Z",
+      "digestStatus": "pending_config",
+      "sessionId": "bj_1778930765208_9um5tesz",
+      "name": "Abhay",
+      "email": "ch.abhay1997@gmail.com",
+      "topics": [
+        "india",
+        "business",
+        "health"
+      ],
+      "source": "website",
+      "dailyBriefing": true,
+      "nearbyNews": false,
+      "cookieConsent": "accepted",
+      "locationConsent": "unknown",
+      "latitude": null,
+      "longitude": null
+    }
+  ]
+}

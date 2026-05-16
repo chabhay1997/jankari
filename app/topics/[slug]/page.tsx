@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import Footer from "@/app/components/Footer";
 import Header from "@/app/components/Header";
 import TopicStoryList from "@/app/components/TopicStoryList";
-import { getTopicBySlug, getTopicChildrenFromData, getTopicHref, getSiteData, getTopicStories } from "@/app/lib/siteData";
+import { getTopicBySlug, getTopicHref, getSiteData, getTopicStories } from "@/app/lib/siteData";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bharatjankari.com";
 
@@ -74,15 +74,6 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
   }
 
   const stories = remoteStories;
-  const directSubtopics = getTopicChildrenFromData(siteData.topics, siteData.topicGroups, slug);
-  const hasNestedTopics = directSubtopics.some((entry) => entry.slug !== topic.slug);
-  const parentTopicSlug = Object.entries(siteData.topicGroups ?? {}).find(([, childSlugs]) => (
-    childSlugs.some((childSlug) => childSlug === topic.slug) && childSlugs.some((childSlug) => childSlug !== topic.slug)
-  ))?.[0];
-  const subtopics = hasNestedTopics || !parentTopicSlug
-    ? directSubtopics
-    : getTopicChildrenFromData(siteData.topics, siteData.topicGroups, parentTopicSlug);
-
   return (
     <div className="min-h-screen bg-[#f5f5f5]">
       <Header siteData={siteData} />
@@ -103,33 +94,6 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
             </Link>
           ))}
         </div>
-
-        {subtopics.length > 1 && (
-          <div className="bg-white border border-gray-200 p-5 mb-6">
-            <div className="flex items-center justify-between gap-4 flex-wrap">
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.28em] text-gray-500">Subcategories</p>
-                <p className="text-sm text-gray-600 mt-1">Browse all sections under {topic.label}.</p>
-              </div>
-              <p className="text-xs font-semibold text-gray-500">Latest stories are shown first.</p>
-            </div>
-            <div className="flex flex-wrap gap-3 mt-4">
-              {subtopics.map((subtopic) => (
-                <Link
-                  key={subtopic.slug}
-                  href={getTopicHref(subtopic.slug)}
-                  className={`text-xs font-semibold uppercase tracking-wide px-3 py-2 border transition ${
-                    subtopic.slug === topic.slug
-                      ? "bg-blue-600 border-blue-600 text-white"
-                      : "bg-blue-50 border-blue-100 text-blue-700 hover:bg-blue-100"
-                  }`}
-                >
-                  {subtopic.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-        )}
 
         {stories.length > 0 ? (
           <TopicStoryList stories={stories} />

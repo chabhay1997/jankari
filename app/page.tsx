@@ -98,7 +98,7 @@ export default async function HomePage() {
         <section className="surface-card overflow-hidden">
           <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,1.35fr)_380px]">
             <div className="p-5 md:p-7 border-b xl:border-b-0 xl:border-r border-slate-200">
-              <div className="flex items-center justify-between gap-4 mb-5">
+              <div className="mb-5 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-[11px] font-black uppercase tracking-[0.32em] text-slate-500">Homepage Spotlight</p>
                   <h2 className="mt-2 text-2xl md:text-3xl font-black text-slate-950">{featuredTopic.label}</h2>
@@ -106,7 +106,7 @@ export default async function HomePage() {
                     <p className="mt-2 max-w-2xl text-sm md:text-base text-slate-600">{featuredTopic.description}</p>
                   )}
                 </div>
-                <Link href={getTopicHref(featuredTopic.slug)} className="text-xs text-blue-600 hover:underline font-semibold whitespace-nowrap">
+                <Link href={getTopicHref(featuredTopic.slug)} className="whitespace-nowrap text-xs font-semibold text-blue-600 hover:underline">
                   VIEW ALL
                 </Link>
               </div>
@@ -137,7 +137,7 @@ export default async function HomePage() {
                     </div>
                   </article>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-5">
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-1">
                     {secondaryFeatured.map((article) => (
                       <article key={article.id} className="bg-white group border border-slate-200 rounded-2xl overflow-hidden">
                         <div className="overflow-hidden">
@@ -173,7 +173,7 @@ export default async function HomePage() {
             </div>
 
             <aside className="p-5 md:p-7 bg-slate-50/70">
-              <div className="flex items-center justify-between gap-3 mb-5">
+              <div className="mb-5 flex items-center justify-between gap-3">
                 <div>
                   <p className="text-[11px] font-black uppercase tracking-[0.32em] text-slate-500">Daily Digest</p>
                   <h3 className="mt-2 text-xl font-black text-slate-950">Latest editor-curated reads</h3>
@@ -215,7 +215,7 @@ export default async function HomePage() {
       <div className="content-wrap pt-0">
         <section className="grid grid-cols-1 xl:grid-cols-[minmax(0,1fr)_360px] gap-6">
           <div className="surface-card p-5 md:p-6">
-            <div className="flex items-center justify-between gap-4 mb-4 pb-2 border-b-2 border-black">
+            <div className="mb-4 flex flex-col gap-3 border-b-2 border-black pb-2 sm:flex-row sm:items-center sm:justify-between">
               <h2 className="text-sm font-black uppercase tracking-wide text-gray-900">
                 Trending Now
               </h2>
@@ -223,7 +223,7 @@ export default async function HomePage() {
             </div>
 
             {trendingStories.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
                 {trendingStories.map((article) => (
                   <div key={article.id} className="flex gap-4 items-start">
                     <img src={article.image} alt={article.title} className="w-24 h-16 object-cover flex-shrink-0 rounded-lg" />

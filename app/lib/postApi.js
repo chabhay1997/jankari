@@ -3,6 +3,7 @@ import { cache } from 'react';
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'https://admin.bharatjankari.com';
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://bharatjankari.com';
 const API_AUTH_TOKEN = process.env.API_AUTH_TOKEN || 'ahshhshahahlljwi@!#!!9**&@^@!bsHHHShsgsgsiu000';
+const REMOTE_FETCH_TIMEOUT_MS = 700;
 
 function stripHtml(html = '') {
     return html
@@ -74,6 +75,7 @@ export const getPostData = cache(async (section, category, slug) => {
                 Accept: 'application/json',
             },
             cache: 'no-store',
+            signal: AbortSignal.timeout(REMOTE_FETCH_TIMEOUT_MS),
         });
 
         if (!res.ok) {

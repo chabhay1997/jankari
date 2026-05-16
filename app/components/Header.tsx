@@ -1,20 +1,20 @@
 "use client";
 
-import { MouseEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { FiChevronDown } from "react-icons/fi";
 import { HiMenu, HiSearch, HiX } from "react-icons/hi";
+import HeaderStatusStrip from "@/app/components/HeaderStatusStrip";
+import ThemeToggle from "@/app/components/ThemeToggle";
 import {
   getStoryImage,
-  getStoryHref,
   getStoryHrefWithSource,
   getTopicChildrenFromData,
   getTopicHref,
   getTopicLabelFromTopics,
   getTopicSlugFromHref,
-  type NavItem,
   type SiteData,
   type SocialLink,
 } from "@/app/lib/siteData";
@@ -75,20 +75,6 @@ export default function Header({ siteData }: { siteData: SiteData }) {
     timeoutRef.current = setTimeout(() => setOpenDropdown(null), 120);
   };
 
-  const toggleDropdown = (label: string) => {
-    setOpenDropdown((current) => (current === label ? null : label));
-  };
-
-  const handleDropdownClick = (event: MouseEvent<HTMLAnchorElement>, item: NavItem) => {
-    const topicSlug = getTopicSlugFromHref(item.href);
-    const canOpenPreview = topicSlug && topicSlug !== "home";
-
-    if (item.dropdown || canOpenPreview) {
-      event.preventDefault();
-      toggleDropdown(item.label);
-    }
-  };
-
   const openMenuItem = siteData.navItems.find((item) => item.label === openDropdown);
   const openTopicSlug = openMenuItem ? getTopicSlugFromHref(openMenuItem.href) : "";
   const previewStories = (
@@ -107,7 +93,7 @@ export default function Header({ siteData }: { siteData: SiteData }) {
 
   return (
     <header className="w-full bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
-      <div className="max-w-[1300px] mx-auto px-4 py-3 flex items-center gap-4">
+      <div className="mx-auto flex max-w-[1300px] items-center gap-3 px-4 py-3 md:gap-4">
         <Link href="/" aria-label="Bharat Jankari Home" className="flex-shrink-0 flex items-center gap-1.5">
           <div className="bg-blue-600 rounded-full w-10 h-10 flex items-center justify-center">
             <span className="text-white font-black text-sm leading-none">24 H</span>
@@ -118,7 +104,7 @@ export default function Header({ siteData }: { siteData: SiteData }) {
           </div>
         </Link>
 
-        <div className="flex-1 max-w-xl hidden md:flex">
+        <div className="hidden max-w-xl flex-1 md:flex">
           <label htmlFor="site-search" className="sr-only">Search news articles</label>
           <div className="flex w-full border border-gray-300 rounded overflow-hidden focus-within:border-blue-500 transition">
             <input
@@ -133,13 +119,15 @@ export default function Header({ siteData }: { siteData: SiteData }) {
           </div>
         </div>
 
-        <div className="hidden md:flex items-center gap-1.5 ml-auto">
+        <div className="ml-auto hidden items-center gap-2 md:flex">
+          <HeaderStatusStrip />
+          <ThemeToggle />
           {siteData.socialLinks.map((link) => (
             <Link
               key={link.platform}
               href={link.href}
               aria-label={link.platform}
-              className={`${getSocialBg(link.platform)} w-7 h-7 rounded flex items-center justify-center text-white hover:opacity-80 transition`}
+              className={`${getSocialBg(link.platform)} h-7 w-7 rounded flex items-center justify-center text-white hover:opacity-80 transition`}
             >
               {getSocialIcon(link.platform)}
             </Link>
@@ -149,7 +137,8 @@ export default function Header({ siteData }: { siteData: SiteData }) {
           </button>
         </div>
 
-        <div className="flex md:hidden items-center gap-3 ml-auto">
+        <div className="ml-auto flex items-center gap-3 md:hidden">
+          <ThemeToggle />
           <button onClick={() => setSearchOpen(!searchOpen)} aria-label="Toggle search"><HiSearch size={20} /></button>
           <button onClick={() => setSideMenuOpen(!sideMenuOpen)} aria-label="Toggle menu">
             {sideMenuOpen ? <HiX size={22} /> : <HiMenu size={22} />}
@@ -167,14 +156,13 @@ export default function Header({ siteData }: { siteData: SiteData }) {
       )}
 
       <nav aria-label="Main navigation" className="border-t border-gray-100 bg-white">
-        <div className="max-w-[1300px] mx-auto px-4 relative" onMouseLeave={handleMouseLeave}>
-          <ul className="hidden md:flex items-center justify-between">
-            <div className="flex items-center">
+        <div className="relative mx-auto max-w-[1300px] px-4" onMouseLeave={handleMouseLeave}>
+          <ul className="hidden items-center justify-between md:flex">
+            <div className="flex items-center overflow-x-auto">
               {siteData.navItems.map((item) => (
                 <li key={item.href} className="relative" onMouseEnter={() => getTopicSlugFromHref(item.href) !== "home" && handleMouseEnter(item.label)}>
                   <Link
                     href={item.href}
-                    onClick={(event) => handleDropdownClick(event, item)}
                     aria-haspopup={getTopicSlugFromHref(item.href) !== "home" ? "true" : undefined}
                     aria-expanded={openDropdown === item.label ? "true" : "false"}
                     className="group flex items-center gap-1 px-3 py-3.5 text-[13px] font-bold text-gray-800 hover:text-blue-600 transition-colors relative whitespace-nowrap"
@@ -298,7 +286,7 @@ export default function Header({ siteData }: { siteData: SiteData }) {
         className={`fixed inset-0 bg-black/40 z-40 transition-opacity duration-300 ${sideMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"}`}
         onClick={() => setSideMenuOpen(false)}
       />
-      <aside className={`fixed inset-y-0 left-0 z-50 w-full max-w-sm bg-white shadow-2xl transform transition-transform duration-300 ${sideMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
+      <aside className={`fixed inset-y-0 left-0 z-50 w-full max-w-sm transform overflow-y-auto bg-white shadow-2xl transition-transform duration-300 ${sideMenuOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex items-center justify-between p-5 border-b border-gray-200">
           <div>
             <p className="text-sm font-bold uppercase tracking-[0.3em] text-gray-500">Menu</p>

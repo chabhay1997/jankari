@@ -268,12 +268,6 @@ export default async function StoryPage({
               </div>
             </div>
 
-            <div className="border border-dashed border-slate-300 bg-slate-50 p-4 text-sm text-slate-500">
-              <p className="text-[11px] font-black uppercase tracking-[0.24em] text-slate-400">Ad Space Ready</p>
-              <p className="mt-3 leading-6">
-                This area can switch to Google Ads later. Until then, it stays filled with editorial trust modules and related reading.
-              </p>
-            </div>
           </aside>
         </div>
       </main>

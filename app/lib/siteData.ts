@@ -873,6 +873,7 @@ export const fallbackSiteData: SiteData = {
 };
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://admin.bharatjankari.com";
+const REMOTE_FETCH_TIMEOUT_MS = 700;
 
 function mergeSiteData(remote: Partial<SiteData> | null | undefined): SiteData {
   if (!remote) {
@@ -950,6 +951,7 @@ async function fetchJson<T>(path: string): Promise<T | null> {
   try {
     const res = await fetch(`${API_BASE_URL}${path}`, {
       cache: "no-store",
+      signal: AbortSignal.timeout(REMOTE_FETCH_TIMEOUT_MS),
     });
 
     if (!res.ok) {

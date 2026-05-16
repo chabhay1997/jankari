@@ -33,16 +33,16 @@ export default async function Footer() {
   return (
     <footer className="bg-[#1c1c1c] text-gray-300">
       <div className="bg-[#111] py-5 px-4">
-        <div className="max-w-[1300px] mx-auto flex flex-col md:flex-row items-center gap-4">
-          <p className="text-[14px] text-gray-300 flex-1">
+        <div className="mx-auto flex max-w-[1300px] flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <p className="max-w-2xl flex-1 text-[14px] leading-6 text-gray-300">
             Subscribe for fresh Bharat Jankari updates across tech, money, travel, health, and entertainment.
           </p>
-          <div className="flex w-full md:w-auto gap-2">
+          <div className="grid w-full grid-cols-1 gap-2 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] md:max-w-[720px]">
             <label htmlFor="footer-name" className="sr-only">Your name</label>
-            <input id="footer-name" type="text" placeholder="Name..." className="bg-[#222] border border-gray-700 text-gray-300 text-[14px] px-4 py-2.5 outline-none w-40 focus:border-blue-500 transition" />
+            <input id="footer-name" type="text" placeholder="Name..." className="w-full min-w-0 border border-gray-700 bg-[#222] px-4 py-3 text-[14px] text-gray-300 outline-none transition focus:border-blue-500" />
             <label htmlFor="footer-email" className="sr-only">Your email</label>
-            <input id="footer-email" type="email" placeholder="Email..." className="bg-[#222] border border-gray-700 text-gray-300 text-[14px] px-4 py-2.5 outline-none w-56 focus:border-blue-500 transition" />
-            <button className="bg-gray-100 text-black font-bold text-[13px] px-6 py-2.5 hover:bg-white transition whitespace-nowrap">
+            <input id="footer-email" type="email" placeholder="Email..." className="w-full min-w-0 border border-gray-700 bg-[#222] px-4 py-3 text-[14px] text-gray-300 outline-none transition focus:border-blue-500" />
+            <button className="w-full whitespace-nowrap bg-gray-100 px-6 py-3 text-[13px] font-bold text-black transition hover:bg-white sm:w-auto">
               SUBSCRIBE
             </button>
           </div>
@@ -50,7 +50,7 @@ export default async function Footer() {
       </div>
 
       <div className="max-w-[1300px] mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 xl:grid-cols-4">
           <div>
             <Link href="/" aria-label="Bharat Jankari" className="flex items-center gap-1.5 mb-4">
               <div className="bg-blue-600 rounded-full w-10 h-10 flex items-center justify-center">
@@ -120,11 +120,11 @@ export default async function Footer() {
       </div>
 
       <div className="border-t border-gray-800 py-4 px-4">
-        <div className="max-w-[1300px] mx-auto flex flex-col md:flex-row items-center justify-between gap-2">
+        <div className="mx-auto flex max-w-[1300px] flex-col gap-2 md:flex-row md:items-center md:justify-between">
           <p className="text-[12px] text-gray-500">
             ©2026 Bharat Jankari. All rights reserved.
           </p>
-          <nav aria-label="Footer navigation" className="flex items-center gap-5">
+          <nav aria-label="Footer navigation" className="flex flex-wrap items-center justify-center gap-5">
             {bottomLinks.map((link) => (
               <Link key={link.href + link.label} href={link.href} className="text-[12px] text-gray-400 hover:text-blue-400 transition-colors">
                 {link.label}

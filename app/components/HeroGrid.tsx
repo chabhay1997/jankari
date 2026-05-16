@@ -39,9 +39,9 @@ export default async function HeroGrid() {
   const editorsPick = (siteData.hero?.editorsPick ?? []).map((story) => ({ ...story, image: getStoryImage(story) }));
 
   return (
-    <section aria-label="Featured content" className="max-w-[1300px] mx-auto px-4 py-6">
-      <div className="grid grid-cols-1 lg:grid-cols-[290px_1fr_290px] gap-0 border border-gray-200 bg-white">
-        <aside aria-label="News categories" className="p-5 border-r border-gray-200">
+    <section aria-label="Featured content" className="mx-auto max-w-[1300px] px-4 py-4 md:py-6">
+      <div className="grid grid-cols-1 overflow-hidden rounded-[28px] border border-gray-200 bg-white lg:grid-cols-[290px_1fr_290px]">
+        <aside aria-label="News categories" className="border-b border-gray-200 p-5 lg:border-b-0 lg:border-r">
           <SectionHeading title="Hot Categories" id="hot-categories" />
           <div className="grid grid-cols-2 gap-x-5 mb-7">
             <CatList items={hotCategories[0] ?? []} />
@@ -55,7 +55,7 @@ export default async function HeroGrid() {
           </div>
         </aside>
 
-        <section aria-labelledby="popular-heading" className="p-5 border-r border-gray-200">
+        <section aria-labelledby="popular-heading" className="border-b border-gray-200 p-5 lg:border-b-0 lg:border-r">
           <SectionHeading title="Popular This Week" id="popular-heading" />
           <ol className="divide-y divide-gray-100">
             {popularStories.map((article, index) => (
